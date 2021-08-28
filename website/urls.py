@@ -7,7 +7,6 @@ app_name = 'website'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('videos/', views.videos, name='videos'),
     path('contato/', views.contact, name='contato'),
     path('config/', views.config, name='config'),
     path('session_gamer/', views.sessiongamer, name='session_gamer'),
