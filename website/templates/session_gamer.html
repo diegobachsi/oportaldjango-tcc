@@ -96,9 +96,8 @@
 
     .perc-barra{
         font-size: 15px;
-        color: #fff;
-        text-align: center; 
-        width: 33%;
+        color: #000;
+        text-align: center;
         background-color: #368d42;
         border-radius: 5px;
     }
@@ -188,7 +187,7 @@
                 <a href="/password_change/#cascata-mobile" id="config"><i class="fas fa-key"></i> Alterar Senha</a>
                 <a href="/email_change/#cascata-mobile" id="config"><i class="fas fa-envelope"></i> Alterar E-mail
                 </a>
-                <a href="#" id="config"><i class="fas fa-paint-brush"></i> Alterar Tema</a>
+                <a href="/alterar_tema/" id="config"><i class="fas fa-paint-brush"></i> Alterar Tema</a>
             </div>
 
             <div class="nav-pc">
@@ -197,7 +196,7 @@
                 <a href="/password_change/" id="config"><i class="fas fa-key"></i> Alterar Senha</a>
                 <a href="/email_change/" id="config"><i class="fas fa-envelope"></i> Alterar E-mail
                 </a>
-                <a href="#" id="config"><i class="fas fa-paint-brush"></i> Alterar Tema</a>
+                <a href="/alterar_tema/" id="config"><i class="fas fa-paint-brush"></i> Alterar Tema</a>
             </div>
 
     	</div><!-- fim painel-2 -->
@@ -205,21 +204,25 @@
     	<div class="painel-1" id="cascata-mobile">
             <div class="box-1">
                 <p><b>Olá {{ user.get_full_name }},</b></p>
-                <p>Você já concluiu os seguintes tópicos:</p>
-                <ul>
-                    <li>- Configurando o Django no Linux</li>
-                    <li>- Criando a primeira aplicação Django</li>
-                    <li>- Entendendo como funciona as views</li>
-                    <li>- Entendendo como funciona os models</li>
-                    <li>- Criando formulários</li>
-                </ul>
+                
+                {% if videos %}
+                    <p>Você já assistiu os seguintes vídeos:</p>
+                    {% for video in videos %}
+                        - {{ video }}<br>
+                    {% endfor %}
+                {% else %}
+                    Você ainda não assistiu nenhum vídeo
+                {% endif %}
+
 		    </div><!-- fim box-1 -->
             <div class="box-2">
-                <p>Seu Progresso: <b>33%</b></p>
+                <p>Seu Progresso: <b>{{ progresso }}%</b></p>
                 <div class="barra">
+                   
                     <div class="perc-barra">
-                        <b>33%</b>
+                        <b>{{ progresso }}%</b>
                     </div>
+                   
                 </div>
             </div><!-- fim box-1 -->
     	</div><!-- fim painel-1 -->
@@ -229,6 +232,13 @@
         </div>
         
 	</div><!-- fim container -->
+
+    <script>
+
+        perc_barra = document.querySelector(".perc-barra");
+        perc_barra.style.width = "{{ progresso }}%";
+
+    </script>
 	
 
 {% endblock %}

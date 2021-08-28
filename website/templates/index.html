@@ -57,6 +57,10 @@
 		color:rgb(219, 94, 36);
 	}
 
+	.painel-2 #js{
+		color:rgb(245, 233, 65);
+	}
+
 	@media screen and (max-width: 550px) {
 
 		.container{
@@ -74,13 +78,11 @@
 		
 	}
 
-	
-
 </style>
 
 	<div class="alert">
 		<i class="fas fa-gamepad"></i>
-		-- Você concluiu % das suas atividades. <a href="/session_gamer/">Área <i class="fas fa-book-reader"></i></a>
+		Você concluiu {{ progresso }}% das suas atividades. <a href="/session_gamer/">Área <i class="fas fa-book-reader"></i></a>
 	</div>
 
     <div class="container">
@@ -89,6 +91,7 @@
 			<i class="fab fa-python" id="python"></i>
 			<i class="fab fa-css3-alt" id="css3"></i>
 			<i class="fab fa-html5" id="html5"></i>
+			<i class="fab fa-js" id="js"></i>
     	</div><!-- fim painel-2 -->
 
     	<div class="painel-1">
