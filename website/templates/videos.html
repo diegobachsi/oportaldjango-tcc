@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Lista de Tarefas{% endblock %}
+
+{% block content %}
+
+    <style>
+
+        .alert {
+                font-size: 15px;
+                font-family: Arial, Helvetica, sans-serif;
+                color: #000;
+                margin: 0 auto;
+                width: 100%;
+                text-align: left;
+                background-color: #d2ffdd; 
+            }
+
+        .alert i{
+            font-size: 15px;
+            padding: 0px;
+            padding-right: 5px;
+            color: #0e30a1;
+        }
+
+        .painel-2 a {
+        font-size: 14px;
+        /*background-color:rgb(248, 248, 248);*/
+        background-color: #a9eeb2;
+        display: block;
+        text-decoration: none;
+        color: #073f2c;
+        text-align: center;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        margin: 5px;
+        }
+
+        .painel-2 a:hover {
+            color: #368d42;
+            background-color: #eee;
+        }
+
+        .painel-1 {
+            text-align: center;
+        }
+        
+        .painel-1 > iframe{
+            width: 560px;
+            height: 315px;
+        }
+
+        @media screen and (max-width: 550px) {
+
+            .container{
+                display: grid;
+                grid-template-columns: auto;
+                margin: 50px 0;
+            }
+
+            .painel-1 > iframe{
+                width: 300px;
+                height: 150px;
+            }
+
+        }
+
+    </style>
+
+    <div class="alert">
+        <i class="fas fa-video"></i>
+        Área Vídeos
+    </div>
+
+    <div class="container">
+
+    	<div class="painel-2">
+
+            <a href="#">Vídeo Apresentação</a>
+            <a href="#">Introdução a HTML</a>
+            <a href="#">Introdução a CSS</a>
+            <a href="#">Introdução a JavaScript</a>
+            <a href="#">Curso de Django</a>
+                     
+    	</div><!-- fim painel-1 -->
+
+    	<div class="painel-1">
+    		<iframe src="https://www.youtube.com/embed/Xtj1AdSoigI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    	</div><!-- fim painel-2 -->
+    </div><!-- fim container -->
+
+{% endblock %}

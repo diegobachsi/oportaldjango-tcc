@@ -1,0 +1,25 @@
+
+<html>
+    <head>
+        <style type="text/css">
+        
+            .title{
+                background-color: #073f2c;
+                color: #fff;
+                padding: 15px;
+                text-align: center;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <div class="title">
+            <h2>Portal Django - Contato do Usuário</h2>
+        </div>
+        <p><strong>Nome</strong>: {{ name }}</p>
+        <p><strong>E-mail</strong>: {{ email }}</p>
+        <p><strong>Mensagem</strong>: {{ message|linebreaks }}
+    </body>
+</html>
+

@@ -1,0 +1,91 @@
+{% load static %}
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal DJANGO - Portal com conteúdo do Framework Django-Python" />
+    <title>O Portal Django</title>
+    <link rel="icon" type="image/jpg" href="{% static 'images/icondj.jpg' %}" />
+    <link rel="stylesheet" href="{% static 'css/auth2.css' %}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <style>
+
+        .alert {
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000;
+            margin: 0 auto;
+            width: 100%;
+            text-align: left;
+            background-color: #d2ffdd; 
+        }
+
+        .alert i{
+            font-size: 15px;
+            padding: 15px;
+            padding-right: 5px;
+        }
+
+        .msg{
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000;
+            padding: 0;
+            margin: 0 auto;
+            width: 50%;
+            text-align: center;
+        }
+
+        .msg i{
+            padding: 15px;
+            font-size: 40px;
+            color: #08f142;
+        }
+
+        .msg a{
+            text-decoration: none;
+            color: #071696;
+            padding: 3px;
+            border: 1px solid #071696;
+        }
+
+        .msg #link{
+            padding: 20px;
+        }
+
+        .msg a:hover{
+            text-decoration: none;
+            color: #1d98c9;
+            border: 1px solid #1d98c9;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="header">
+        <p><img src="{% static 'images/logo-django.png' %}" /></p>
+    </div>
+
+    <div class="alert">
+        <i class="fas fa-envelope"></i>
+        A sua conta foi ativada.
+    </div>
+
+    <div class="container">
+        <div class="msg"> 
+            <i class="far fa-check-circle"></i>   
+            <p>Sua conta foi ativada com sucesso!
+            Já está apto para realizar seu acesso.</p>
+            <p id="link"><a href="/">Acessar</a></p>
+        </div>
+    </div>
+
+</body>
+
+</html>

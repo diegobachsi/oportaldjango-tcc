@@ -1,0 +1,256 @@
+{% load static %}
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portal DJANGO - Portal com conteúdo do Framework Django-Python" />
+    <title>O Portal Django</title>
+    <link rel="icon" type="image/jpg" href="{% static 'images/icondj.jpg' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/form.css' %}"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap files (jQuery first, then Popper.js, then Bootstrap JS) -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    
+       
+    
+    <script type="text/javascript">
+    // some script
+    $(function () {
+          'use strict'
+    
+        $("[data-trigger]").on("click", function(){
+            var trigger_id =  $(this).attr('data-trigger');
+            $(trigger_id).toggleClass("show");
+            $('body').toggleClass("offcanvas-active");
+        });
+    
+        // close if press ESC button 
+        $(document).on('keydown', function(event) {
+            if(event.keyCode === 27) {
+               $(".navbar-collapse").removeClass("show");
+               $("body").removeClass("overlay-active");
+            }
+        });
+    
+        // close button 
+        $(".btn-close").click(function(e){
+            $(".navbar-collapse").removeClass("show");
+            $("body").removeClass("offcanvas-active");
+        }); 
+    
+    
+    })
+    </script>
+    
+    <style type="text/css">
+
+    #ifooter{
+        color: #72ec82;
+    }
+    
+    body.offcanvas-active{
+        overflow:hidden;
+    }
+        
+    .offcanvas-header{ 
+        display:none; 
+    }
+
+    .navbar-nav{
+        visibility: hidden;
+    }
+
+    /* Style The Dropdown Button */
+    .dropbtn {
+        background-color: #fff;
+        color: #073f2c;
+        padding-right: 20px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    /* The container <div> - needed to position the dropdown content */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        font-size: 11px;
+    }
+    
+    /* Dropdown Content (Hidden by Default) */
+    .dropdown-content {
+        border: 1px solid #073f2c;
+        border-radius: 5px;
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 120px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 2;
+    }
+    
+    /* Links inside the dropdown */
+    .dropdown-content a {
+        color: #073f2c;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
+    
+    /* Change color of dropdown links on hover */
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        color: #368d42;
+    }
+    
+    /* Show the dropdown menu on hover */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    
+    /* Change the background color of the dropdown button when the dropdown content is shown */
+    .dropdown:hover .dropbtn {
+        background-color: #fff;
+    }
+    
+    @media (max-width: 992px) {
+
+      .offcanvas-header{ 
+          display:block; 
+      }
+        
+      .navbar-collapse {
+        position: fixed;
+        font-size: 30px !important;
+        top:0; 
+        bottom: 0;
+        left: 100%;
+        width: 100%;
+        padding-right: 1rem;
+        padding-left: 1rem;
+        overflow-y: auto;
+        visibility: hidden;
+        background-color: #073f2c;
+        transition: visibility .2s ease-in-out, transform .2s ease-in-out;
+      }
+
+      .menu a{
+        font-size: 15px ;
+        padding-bottom: 10px !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        margin-bottom: 10px !important;
+        margin-left: 0;
+
+      }
+
+      .header_menu {
+        padding-bottom: 0;
+        grid-template-columns: 100%;
+      }
+
+      .menu-pc{
+        display: none;
+      }
+
+      .navbar-nav{
+        visibility: visible;
+      }
+
+      .navbar-collapse.show {
+        visibility: visible;
+        transform: translateX(-100%);
+      }
+
+      .footer{
+          font-size: 11px;
+      }
+
+      .navbar {
+        z-index: 1;
+      }
+
+    }
+    
+    </style>
+    
+</head>
+
+<body>
+    <div class="header_menu">
+        <div class="menu-pc">
+            <a href="{% url 'website:index' %}"><i class="fas fa-home"></i> Home </a>
+            <a href="{% url 'topicos:index' %}"><i class="fas fa-folder-open"></i> Tópicos </a>
+            <a href="{% url 'website:videos' %}"><i class="fas fa-video"></i> Vídeos </a>
+            <a href="{% url 'website:contato' %}"><i class="fas fa-envelope"></i> Contatos </a>   
+        </div>
+        <div class="user_logado">
+            <div class="dropdown">
+                <div class="dropbtn">Olá, {{ user.get_username }}. <i class="fas fa-chevron-circle-down"></i></div>
+                <div class="dropdown-content">
+                    <a href="{% url 'website:config' %}"><i class="fas fa-cog"></i> Configurações </a>
+                    <a href="{% url 'accounts:logout' %}"><i class="fas fa-times-circle"></i> Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="header">
+
+        <div class="logotipo">
+            <a href="{% url 'website:index' %}"><img src="{% static 'images/logo-django.png' %}" /></a>
+        </div>
+
+        
+        <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #073f2c;">
+            <a class="navbar-brand" href="#"></a>
+            <button class="navbar-toggler" type="button" data-trigger="#main_nav">
+               <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse" id="main_nav">
+        
+                <div class="offcanvas-header mt-3">  
+                    <button class="btn btn-outline-danger btn-close float-right"> &times Fechar </button>
+                    <h5 class="py-2 text-white">Menu</h5>
+                </div>
+            
+                <ul class="navbar-nav menu">
+                    <li class="nav-item active"> <a class="nav-link" href="{% url 'website:index' %}">Home </a> </li>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'topicos:index' %}"> Tópicos </a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'website:videos' %}"> Videos </a></li>
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'website:contato' %}"> Contato </a></li>
+                </ul>
+            
+            </div> <!-- navbar-collapse.// -->
+    
+        </nav>
+        
+
+        <div class="redes-sociais">
+            <a href="#"><i class="fab fa-facebook-square"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+
+    </div><!-- fim header -->
+
+    {% block content %}{% endblock %}
+
+    <div class="footer">
+        <p>Equipe G-DEK <i class="far fa-copyright" id="ifooter"></i> Todos os direitos reservados - 2020</p>
+    </div><!-- fim footer -->
+
+  </body>
+
+</html>

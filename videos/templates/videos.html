@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load my_tags %}
+
+{% block title %}Lista de Vídeos{% endblock %}
+
+{% block content %}
+
+    <style>
+    
+    .alert {
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #000;
+        margin: 0 auto;
+        width: 100%;
+        text-align: left;
+        background-color: #d2ffdd; 
+    }
+
+    .alert i{
+        font-size: 15px;
+        padding: 0px;
+        padding-right: 5px;
+        color: #0e30a1;
+    }
+
+    .painel-2 a{
+        font-size: 14px;
+        background-color:#a9eeb2;
+        display: block;
+        text-decoration: none;
+        color: #073f2c;
+        text-align: left;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        margin: 5px;
+    }
+
+    .painel-2 a:hover {
+        color: #368d42;
+        background-color: #eee;
+    }
+
+    .painel-1{
+        text-align: center;
+        font-size: 100px;
+    }
+
+	@media screen and (max-width: 550px) {
+		
+		.container{
+		    display: grid;
+		    grid-template-columns: auto;
+		    margin: 50px 0;
+		}
+
+        .painel-1{
+            font-size: 50px;
+        }
+		
+	}
+
+    </style>
+
+    <div class="alert">
+        <i class="fas fa-folder-open"></i>
+        Área Vídeos
+    </div>
+
+    <div class="container">
+	    
+    	<div class="painel-2">
+            {% for video in videos %}
+                <a href="{{ video.slug }}"> {{ video.title }}</a>
+	          {% endfor %}
+        </div><!-- fim painel-2 -->
+
+    	<div class="painel-1" id="title">
+          	 <i class="fas fa-angle-double-left" ></i> VÍDEOS <i class="fas fa-angle-double-right" ></i> 
+    	</div><!-- fim painel-1 -->
+		
+    </div>
+
+{% endblock %}

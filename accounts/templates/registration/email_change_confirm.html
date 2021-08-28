@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Lista de Tarefas{% endblock %}
+
+{% block content %}
+
+
+<style>
+
+	.painel-2 i{
+		font-size: 20px;
+		display: inline-block;
+        padding: 8px 0px;
+        padding-left: 38px;
+        padding-right: 15px;
+    }
+
+    #config {
+        background-color:rgb(248, 248, 248);
+        display: block;
+        text-decoration: none;
+        color: #073f2c;
+        text-align: left;
+        border: 0;
+    }
+
+    #config:hover {
+        color: #72ec82;
+    }
+
+    .alert {
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #000;
+        margin: 0 auto;
+        width: 100%;
+        text-align: left;
+        background-color: #d2ffdd; 
+    }
+
+    .alert i{
+        font-size: 15px;
+        padding: 4x;
+        padding-right: 5px;
+    }
+
+    .msg{
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #000;
+        padding: 0;
+        margin: 0 auto;
+        width: 50%;
+        text-align: center;
+    }
+
+    .msg i{
+            padding: 15px;
+            font-size: 40px;
+            color: #08f142;
+    }
+
+    .msg p{
+        margin: 0;
+        padding: 0;
+    }
+
+	@media screen and (max-width: 550px) {
+
+		.container{
+		    grid-template-columns: auto;
+		    margin: 50px 0;
+		}
+		
+		.painel-2{
+			display: none !important;
+		}
+
+        .msg p{
+            font-size: 13px;
+        }
+		
+	}
+
+	
+
+</style>
+
+    <div class="alert">
+        <i class="fas fa-envelope"></i>
+        E-mail alterado!
+    </div>
+
+    <div class="container">
+	    
+		<div class="painel-2">
+			<a href="/config/" id="config"><i class="fas fa-database"></i> Dados Perfil</a>
+			<a href="/password_change/" id="config"><i class="fas fa-key"></i> Alterar Senha</a>
+			<a href="/email_change/" id="config"><i class="fas fa-envelope"></i> Alterar E-mail</a>
+			<a href="/alterar_tema/" id="config"><i class="fas fa-paint-brush"></i> Alterar Tema</a>
+    	</div><!-- fim painel-2 -->
+
+    	<div class="painel-1">
+            <div class="msg"> 
+                <i class="far fa-check-circle"></i>   
+                <p><b>{{ user.get_username }},</b></p>
+                <p>seu e-mail foi alterado para:</p>
+                <p><b>{{ user.email }}</b></p>
+            </div>
+    	</div><!-- fim painel-1 -->
+
+    	
+	</div><!-- fim container -->
+	
+
+{% endblock %}

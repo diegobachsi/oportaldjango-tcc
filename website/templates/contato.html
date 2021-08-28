@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Lista de Tarefas{% endblock %}
+
+{% block content %}
+
+<style>
+
+	.alert {
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #000;
+        margin: 0 auto;
+        width: 100%;
+        text-align: left;
+        background-color: #d2ffdd; 
+    }
+
+    .alert i{
+        font-size: 15px;
+        padding: 0px;
+        padding-right: 5px;
+        color: #0e30a1;
+    }
+	
+	@media screen and (max-width: 550px) {
+		
+		.painel-contact{
+			width: 100%;
+			border: 1px solid #bbb;
+			border-radius: 5px;
+			padding: 20px;
+			margin: 0 auto;
+			background: rgb(248, 248, 248);
+		}
+	}
+
+</style>
+
+	<div class="alert">
+		<i class="fas fa-envelope"></i>
+		Envie sua dúvida, sugestão ou crítica.
+	</div>
+
+    <div class="container-contact">
+
+    	<div class="painel-contact">
+		  
+			{% if is_valid %}
+				<div class="alerts"><i class="far fa-check-circle"></i> 
+					Sua mensagem foi enviada com sucesso!
+				</div>
+			{% endif %}
+			
+			<form action="#contato" method="post">
+				{% csrf_token %}
+					
+					{% for field in form %}
+					<div>
+						{{ field }}
+						{{ field.errors }}
+					</div>
+					{% endfor %}
+					
+					<div>
+						<input type="submit">
+							
+						</input>
+					</div>
+				
+			</form>
+         
+    	</div><!-- fim painel-contact -->
+
+    </div><!-- fim container-contact -->
+
+{% endblock %}
+
+				
+                  

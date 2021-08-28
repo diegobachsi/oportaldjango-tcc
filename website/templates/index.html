@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Lista de Tarefas{% endblock %}
+
+{% block content %}
+
+
+<style>
+
+	.alert {
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #000;
+        margin: 0 auto;
+        width: 100%;
+        text-align: left;
+        background-color: #d2ffdd;
+    }
+
+    .alert i{
+        font-size: 15px;
+        padding: 0px;
+        padding-right: 5px;
+        color: #0e30a1;
+    }
+
+    .alert a{
+    	border: 1px solid #0e30a1;
+    	text-decoration: none;
+    	padding: 5px;
+    	margin: 10px;
+    	color: #0e30a1;
+    }
+
+    .alert a:hover{
+    	color: #000;
+    	background: #eee;
+    }
+
+	.painel-2 i{
+		font-size: 100px;
+		display: block;
+		margin-top: 15px;
+	}
+
+	.painel-2 #python{
+		color:rgb(219, 223, 33);
+	}
+
+	.painel-2 #css3{
+		color:rgb(71, 166, 221);
+	}
+
+	.painel-2 #html5{
+		color:rgb(219, 94, 36);
+	}
+
+	@media screen and (max-width: 550px) {
+
+		.container{
+		    grid-template-columns: auto;
+		    margin: 50px 0;
+		}
+		
+		.painel-2{
+			display: none !important;
+		}
+
+		.alert{
+			font-size: 12px;
+		}
+		
+	}
+
+	
+
+</style>
+
+	<div class="alert">
+		<i class="fas fa-gamepad"></i>
+		-- Você concluiu % das suas atividades. <a href="/session_gamer/">Área <i class="fas fa-book-reader"></i></a>
+	</div>
+
+    <div class="container">
+	    
+		<div class="painel-2">
+			<i class="fab fa-python" id="python"></i>
+			<i class="fab fa-css3-alt" id="css3"></i>
+			<i class="fab fa-html5" id="html5"></i>
+    	</div><!-- fim painel-2 -->
+
+    	<div class="painel-1">
+		  <h1>Olá Seja BEM-VINDO ao nosso portal Django!</h1>
+		  
+		  <h2>O que é Django?</h2>
+		  <p>Django é um framework para aplicações web gratuito e de código aberto,
+			 escrito em Python. Um web framework é um conjunto de componentes que ajuda
+			 você a desenvolver sites de forma mais rápida e fácil.</p>
+
+		  <p>Abordar o que será desenvolvido no portal.</p>
+         
+    	</div><!-- fim painel-1 -->
+
+    	
+	</div><!-- fim container -->
+	
+
+{% endblock %}
