@@ -52,6 +52,23 @@
         text-align: justify;
     }
 
+    #icon_video{
+        font-size: 15px;
+        margin: 5px 0px;
+    }
+
+    #menu_videos{
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    #title_curso{
+      background-color: #368d42;
+      color: #fff;
+      border-radius: 10px;
+      padding: 10px;
+    }
+
 	@media screen and (max-width: 1000px) {
 		
 		.container{
@@ -72,8 +89,12 @@
     	    
         <div class="painel-2">
             
-                Você está assistindo ao vídeo {{ video.title }}
-                <a href="{% url 'cursos:index' %}"> Voltar Cursos</a>
+          {% for curso in cursos %}
+          <p id="title_curso">Curso: {{ curso.title }}</p>
+            {% for video in videos %}
+                <a id="menu_videos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
+            {% endfor %}
+          {% endfor %}
            
         </div><!-- fim painel-2 -->
 

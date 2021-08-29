@@ -27,45 +27,51 @@
         color: #0e30a1;
     }
 
-    .painel-2 a{
-        font-size: 14px;
-        background-color:#a9eeb2;
-        display: block;
-        text-decoration: none;
-        color: #073f2c;
-        text-align: left;
-        border: 1px solid #aaa;
-        border-radius: 5px;
-        margin: 5px;
+    .container{
+		display: grid;
+		grid-template-columns: 100%;
+	}
+
+    .painel-1{
+        padding-right: 35px;
     }
 
-    .painel-2 a:hover {
+    .painel-1 a{
+        font-size: 20px;
+        background-color:#cde0f8;
+        display: inline-block;
+        text-decoration: none;
+        color: #073f2c;
+        border: 1px solid #aaa;
+        padding: 20px;
+        margin: 10px;
+        width: 30%;
+        text-align: center;
+    }
+
+    .painel-1 a:hover {
         color: #368d42;
         background-color: #eee;
     }
 
-    .painel-1{
-        text-align: center;
-        font-size: 100px;
-    }
-
     #icon_cursos{
-        padding: 10px;
-        font-size: 20px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-size: 50px;
+        display: block;
+        text-align: center;
     }
 
 	@media screen and (max-width: 550px) {
-		
-		.container{
-		    display: grid;
-		    grid-template-columns: auto;
-		    margin: 50px 0;
-		}
 
         .painel-1{
             font-size: 50px;
         }
 		
+        .painel-1 a{
+            width: 100%;
+        }
+
 	}
 
     </style>
@@ -77,14 +83,10 @@
 
     <div class="container">
 	    
-    	<div class="painel-2">
+    	<div class="painel-1">
             {% for curso in cursos %}
                 <a href="{% url 'cursos:video_por_cursos' curso.id %}"><i id="icon_cursos" class="{{ curso.description }}"></i> {{ curso.title }}</a>
-	          {% endfor %}
-        </div><!-- fim painel-2 -->
-
-    	<div class="painel-1" id="title">
-          	 <i class="fas fa-angle-double-left" ></i> CURSOS <i class="fas fa-angle-double-right" ></i> 
+            {% endfor %}
     	</div><!-- fim painel-1 -->
 		
     </div>

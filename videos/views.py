@@ -15,24 +15,27 @@ def videos(request):
     return render(request, template_name, context)
 
 @login_required(login_url='accounts:login')
-def details(request, slug):
+def details(request, id, slug):
     video = get_object_or_404(Videos,slug=slug)
-    videos = Videos.objects.all()
+    videos = Videos.objects.filter(curso=id)
+    curso = Cursos.objects.filter(id=id)
     context = {
         'video': video,
-        'videos': videos
+        'videos': videos,
+        'cursos': curso
     }
     template_name = 'details_videos.html'
     return render(request, template_name, context)
 
 @login_required(login_url='accounts:login')
-def video_assistido(request, title): 
+def video_assistido(request, id, title): 
     video = get_object_or_404(Videos,title=title)
     videos = Videos.objects.all()
-
+    cursos = Cursos.objects.all()
     context = {
         'video': video,
-        'videos': videos
+        'videos': videos,
+        'cursos': cursos
     }
 
     verifica_video_assistido = WatchedVideo.objects.filter(user=request.user, title=video) #realiza consulta no bd para ver se o user current já assistiu o video em questão

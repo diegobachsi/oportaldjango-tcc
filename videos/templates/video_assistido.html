@@ -49,6 +49,19 @@
         font-size: 100px;
     }
 
+    #icon_cursos{
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    #title_curso_p1{
+        border: 1px solid #aaa;
+        background-color: #ccc;
+        width: 40%;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
 	@media screen and (max-width: 550px) {
 		
 		.container{
@@ -74,13 +87,17 @@
 	    
     	<div class="painel-2">
             
-            <a href="{% url 'cursos:index' %}"> Voltar Cursos</a>
+            {% for curso in cursos %}
+                <a href="{% url 'cursos:video_por_cursos' curso.id %}"><i id="icon_cursos" class="{{ curso.description }}"></i> {{ curso.title }}</a>
+	        {% endfor %}
 	          
         </div><!-- fim painel-2 -->
 
     	<div class="painel-1" >
           	 
-            <p>Parabéns! Você finalizou o vídeo {{ video.title }}. Continue seu progresso acessando os vídeos ao lado.</p>
+            <p>Parabéns! Você finalizou o vídeo:</p>
+            <p id="title_curso_p1">{{ video.title }}</p>
+            <p>Se precisar acessar um novo curso navegue pelo menu.</p>
 
     	</div><!-- fim painel-1 -->
 		

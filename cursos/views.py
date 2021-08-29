@@ -28,11 +28,12 @@ def details(request, slug):
 
 @login_required(login_url='accounts:login')
 def videos_por_cursos(request, id):
-    cursos = Cursos.objects.all()
+    curso = Cursos.objects.filter(id=id)
+    print(curso)
     videos = Videos.objects.filter(curso=id)
     template_name = 'videos_por_cursos.html'
     context = {
         'videos': videos,
-        'cursos': cursos
+        'cursos': curso
     }
     return render(request, template_name, context)

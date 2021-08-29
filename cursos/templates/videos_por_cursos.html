@@ -64,12 +64,19 @@
     }
 
     #icon_video{
-        font-size: 50px;
-        display: block;
-        margin: 10px;
+        font-size: 15px;
+        margin: 5px 0px;
     }
 
-    #icon_cursos{
+    #menu_videos{
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    #title_curso{
+        background-color: #368d42;
+        color: #fff;
+        border-radius: 10px;
         padding: 10px;
     }
 
@@ -98,13 +105,17 @@
 	    
     	<div class="painel-2">
             {% for curso in cursos %}
-                <a href="{% url 'cursos:video_por_cursos' curso.id %}"><i id="icon_cursos" class="fas fa-folder"></i> {{ curso.title }}</a>
+            <p id="title_curso">Curso: {{ curso.title }}</p>
+                {% for video in videos %}
+                    <a id="menu_videos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
+                {% endfor %}
             {% endfor %}
         </div><!-- fim painel-2 -->
 
     	<div class="painel-1" >
-            {% for video in videos %}
-                <a href="{% url 'videos:details' video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
+            {% for curso in cursos %}
+                <p>Bem-vindo ao curso de {{ curso.title }}, acesse o menu e escolha o vídeo.</p>
+                <p>Bons Estudos ;D</p>
             {% endfor %}
     	</div><!-- fim painel-1 -->
 		
