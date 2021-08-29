@@ -4,7 +4,7 @@ from .models import Videos, WatchedVideo
 
 class VideosAdmin(admin.ModelAdmin):
 
-    list_display = ['id', 'title', 'slug' , 'curso', 'watched_at']
+    list_display = ['title', 'slug' , 'curso', 'watched_at']
     search_fields = ['title', 'slug']
 
 admin.site.register(Videos, VideosAdmin)

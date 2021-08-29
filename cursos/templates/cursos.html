@@ -51,6 +51,7 @@
 
     #icon_cursos{
         padding: 10px;
+        font-size: 20px;
     }
 
 	@media screen and (max-width: 550px) {
@@ -78,7 +79,7 @@
 	    
     	<div class="painel-2">
             {% for curso in cursos %}
-                <a href="{% url 'cursos:video_por_cursos' curso.id %}"><i id="icon_cursos" class="fas fa-folder"></i> {{ curso.title }}</a>
+                <a href="{% url 'cursos:video_por_cursos' curso.id %}"><i id="icon_cursos" class="{{ curso.description }}"></i> {{ curso.title }}</a>
 	          {% endfor %}
         </div><!-- fim painel-2 -->
 
