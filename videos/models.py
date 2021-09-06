@@ -19,7 +19,9 @@ class Videos(models.Model):
 
     description = models.TextField('Descrição Simples', blank=True)
 
-    watched_at = models.DateTimeField('Assistido em:', auto_now_add=True)
+    segundos = models.IntegerField('Segundos', blank=True)
+
+    created_at = models.DateTimeField('Assistido em:', auto_now_add=True)
 
     objects = VideosManager()
 
@@ -29,7 +31,7 @@ class Videos(models.Model):
     class Meta:
         verbose_name = 'Videos'
         verbose_name_plural = 'Videos'
-        ordering = ['watched_at']
+        ordering = ['created_at']
 
 class WatchedVideo(models.Model):
 
