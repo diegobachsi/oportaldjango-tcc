@@ -46,6 +46,8 @@
 
     .painel-1{
         text-align: center;
+        display: grid;
+        grid-template-columns: auto 70%;
     }
 
     .painel-1 a{
@@ -80,6 +82,27 @@
         padding: 10px;
     }
 
+    #detalhes{
+        font-size: 15px;
+
+        padding: 10px;
+
+        text-align: left;
+
+        list-style-type: none;
+
+    }
+
+    #detalhes i{
+        margin: 10px;
+    }
+
+    .logo_curso i{
+        text-align: center;
+        font-size: 200px;
+        color: rgb(219, 94, 36);
+    }
+
 	@media screen and (max-width: 1000px) {
 		
 		.container{
@@ -90,6 +113,7 @@
 
         .painel-1{
             font-size: 50px;
+            grid-template-columns: auto;
         }
 		
 	}
@@ -114,8 +138,15 @@
 
     	<div class="painel-1" >
             {% for curso in cursos %}
-                <p>Bem-vindo ao curso de {{ curso.title }}, acesse o menu e escolha o vídeo.</p>
-                <p>Bons Estudos ;D</p>
+                <div class="logo_curso">
+                    <i class="{{ curso.description }}"></i>
+                </div>
+                <ul id="detalhes">
+                    <li><i class="fas fa-video"></i> Curso: <b>{{ curso.title }}</b></li>
+                    <li><i class="fas fa-th-list"></i> Qtd. Vídeos: <b>{{ qtd_videos }}</b></li>
+                    <li><i class="fas fa-clock"></i> Duração: <b>{{ duration }}min</b></li>
+                    <li><i class="fas fa-history"></i> Atualizado em: <b>{{ curso.created_at }}</b></li>
+                </ul>
             {% endfor %}
     	</div><!-- fim painel-1 -->
 		
