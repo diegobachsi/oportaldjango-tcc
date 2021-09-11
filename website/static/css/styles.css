@@ -11,7 +11,7 @@ html, body{
     display: grid;
     grid-template-columns: 70% 30%;
     padding-bottom: 5px;
-    border-bottom: 3px solid #073f2c;
+    border-bottom: 8px solid #073f2c;
 }
 
 .menu-pc {
@@ -55,7 +55,8 @@ html, body{
     grid-template-columns: 20% auto 20%;
     padding: 20px 0;
     background-color: #073f2c;
-    border-top: 3px solid #36e74d;
+    border-top: 4px solid #fff;
+    border-bottom: 8px solid #073f2c;
 }
 
 .logotipo {
@@ -260,15 +261,33 @@ html, body{
     text-align: center;
 }
 
-.footer {
-    padding: 70px 0;
-    background-color: #073f2c;
-    text-align: center;
-    color: #fff;
-    border-top: 3px solid #36e74d;
-    font: 15px "Segoe UI",Arial,sans-serif;
+.alert {
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #000;
+    margin: 0 auto;
+    width: 100%;
+    text-align: left;
+    background-color: #d2ffdd;
 }
 
+.alert i{
+    font-size: 15px;
+    padding: 0px;
+    padding-right: 5px;
+    color: #0e30a1;
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 70px 0;
+    background-color: #ddd;
+    text-align: center;
+    color: #073f2c;
+    border-top: 10px solid #073f2c;
+    font: 15px "Segoe UI",Arial,sans-serif;
+}
 
 @media screen and (max-width: 690px) {
 

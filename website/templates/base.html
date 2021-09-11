@@ -17,9 +17,7 @@
     <!-- Bootstrap files (jQuery first, then Popper.js, then Bootstrap JS) -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" type="text/javascript"></script>
-    
-       
-    
+      
     <script type="text/javascript">
     // some script
     $(function () {
@@ -50,10 +48,6 @@
     </script>
     
     <style type="text/css">
-
-    #ifooter{
-        color: #72ec82;
-    }
     
     body.offcanvas-active{
         overflow:hidden;
@@ -209,11 +203,11 @@
     <div class="header">
 
         <div class="logotipo">
-            <a href="{% url 'website:index' %}"><img src="{% static 'images/logo-django.png' %}" /></a>
+            <a href="{% url 'website:index' %}"><img style="border-radius: 7px;" src="{% static 'images/logo-django.png' %}" /></a>
         </div>
 
         
-        <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #073f2c;">
+        <nav class="navbar navbar-expand-lg navbar-dark">
             <a class="navbar-brand" href="#"></a>
             <button class="navbar-toggler" type="button" data-trigger="#main_nav">
                <span class="navbar-toggler-icon"></span>
@@ -250,7 +244,17 @@
     {% block content %}{% endblock %}
 
     <div class="footer">
-        <p>Equipe G-DEK <i class="far fa-copyright" id="ifooter"></i> Todos os direitos reservados - 2020</p>
+        <div>
+            <p><i class="far fa-copyright"></i> O Portal Django</p>
+            <p style="font-size: 12px;">2021</p>
+            <p style="font-size: 12px;">Projeto de TCC</p>
+            <p style="font-size: 12px;">FATEC - Ribeirão Preto - SP</p>
+        </div>
+        <div> 
+            <p style="font-size: 12px;">Desenvolvido por:<p> 
+            <p>Diego Costa Alves</p>
+            <p>Edson Carlos Silveira</p>
+        </div>
     </div><!-- fim footer -->
 
   </body>
