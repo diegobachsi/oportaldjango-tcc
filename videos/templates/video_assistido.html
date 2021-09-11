@@ -61,8 +61,20 @@
         font-size: 30px;
     }
 
+    #menu_videos{
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
     .fa-hand-peace{
         color: rgb(204, 179, 109);
+    }
+
+    #title_curso{
+        color: #000;
+        border-bottom: 1px solid #aaa;
+        padding: 10px;
+        padding-bottom: 20px;
     }
 
 	@media screen and (max-width: 1000px) {
@@ -90,9 +102,12 @@
 	    
     	<div class="painel-2">
             
-            {% for curso in cursos %}
-                <a href="{% url 'cursos:video_por_cursos' curso.id %}"><i id="icon_cursos" class="{{ curso.description }}"></i> {{ curso.title }}</a>
-	        {% endfor %}
+        {% for curso in cursos %}
+           <p id="title_curso">Curso: {{ curso.title }}</p>
+            {% for video in videos %}
+                <a id="menu_videos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
+            {% endfor %}
+        {% endfor %}
 	          
         </div><!-- fim painel-2 -->
 
@@ -101,7 +116,7 @@
             <i class="fas fa-hand-peace"></i>
             <h5>Parabéns! Você finalizou o vídeo:</h5>
             <p id="title_video_assistido">{{ video.title }}</p>
-            <p>Se precisar acessar um novo curso navegue pelo menu.</p>
+            <p>Estamos orgulhosos do seu desempenho, continue assim.</p>
 
     	</div><!-- fim painel-1 -->
 		

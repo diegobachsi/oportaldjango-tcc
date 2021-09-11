@@ -30,8 +30,8 @@ def details(request, id, slug):
 @login_required(login_url='accounts:login')
 def video_assistido(request, id, title): 
     video = get_object_or_404(Videos,title=title)
-    videos = Videos.objects.all()
-    cursos = Cursos.objects.all()
+    videos = Videos.objects.filter(curso=id)
+    cursos = Cursos.objects.filter(id=id)
     context = {
         'video': video,
         'videos': videos,
