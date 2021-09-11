@@ -54,12 +54,15 @@
         font-size: 20px;
     }
 
-    #title_curso_p1{
-        border: 1px solid #aaa;
-        background-color: #ccc;
-        width: 40%;
+    #title_video_assistido{
+        color: #368d42;
         margin: 0 auto;
         padding: 10px;
+        font-size: 30px;
+    }
+
+    .fa-hand-peace{
+        color: rgb(204, 179, 109);
     }
 
 	@media screen and (max-width: 1000px) {
@@ -95,8 +98,9 @@
 
     	<div class="painel-1" >
           	 
-            <p>Parabéns! Você finalizou o vídeo:</p>
-            <p id="title_curso_p1">{{ video.title }}</p>
+            <i class="fas fa-hand-peace"></i>
+            <h5>Parabéns! Você finalizou o vídeo:</h5>
+            <p id="title_video_assistido">{{ video.title }}</p>
             <p>Se precisar acessar um novo curso navegue pelo menu.</p>
 
     	</div><!-- fim painel-1 -->
