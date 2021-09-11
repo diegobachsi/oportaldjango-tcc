@@ -65,7 +65,9 @@
 
     <div class="alert">
         <i class="fas fa-folder-open"></i>
-        Área Vídeos
+        {% for curso in cursos %}
+          Área Cursos > {{ curso.title }} > {{ video.title }}
+        {% endfor %}
     </div>
 
     <div class="container">
