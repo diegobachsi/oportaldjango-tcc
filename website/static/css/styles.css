@@ -69,6 +69,8 @@ html, body{
 
 .logotipo img{
     width: 80px;
+    border: 5px solid #fff;
+    background: #092d1f;
 }
 
 .menu {
@@ -106,6 +108,7 @@ html, body{
     float: left;
     text-align: center;
     color: #000;
+    background: #073f2c;
     font: 20px verdana, arial, helvetica, sans-serif;
 }
 
@@ -116,6 +119,10 @@ html, body{
 
 .redes-sociais a:hover{
     color:  #368d42;
+}
+
+.redes-sociais > .elem{
+    margin-top: 25px;
 }
 
 .container{
