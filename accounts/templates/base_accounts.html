@@ -13,30 +13,10 @@
 
 </head>
 
-<style>
-
-    .logotipo{
-        font-size: 35px;
-        font-weight: bold;
-        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-
-    .logotipo img{
-        margin: 15px 0;
-        border: 5px solid #fff;
-        background: #092d1f;
-        border-radius: 7px;
-        vertical-align: middle;
-    }
-
-</style>
-
 <body>
 
     <div class="header">
-        <div class="logotipo">
-            <p>O Portal <img src="{% static 'images/logo-django.png' %}" />ango</p>
-        </div>
+            <p><img src="{% static 'images/logo-django.png' %}" /> Portal django</p>
     </div>
 
     {% block content %}{% endblock %} 
