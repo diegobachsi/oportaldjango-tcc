@@ -1,3 +1,4 @@
+from cursos.models import Cursos
 from videos.models import WatchedVideo, Videos
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
@@ -63,11 +64,15 @@ def alterar_tema(request):
 def buscar(request):
 
     lista_videos = Videos.objects.filter(title__icontains=request.GET['buscar'])
+    lista_cursos = Cursos.objects.filter(title__icontains=request.GET['buscar'])
 
     context = {
         'videos': lista_videos,
+        'cursos': lista_cursos,
         'busca': request.GET['buscar'],
     }
+
+    print(lista_videos)
 
     return render(request, 'buscar.html', context)
 

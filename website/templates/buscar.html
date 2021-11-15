@@ -44,12 +44,33 @@
         text-align: center;
         margin: 10px;
         color: #073f2c;
+        padding: 20px;
     }
 
     #itens{
+        display: grid;
+        grid-template-columns: 10% 90%;
         background-color:#cde0f8;
         margin: 10px;
-        border: 1px solid #aaa;
+        border-top-style: dotted;
+        border-right-style: solid;
+        border-bottom-style: dotted;
+        border-left-style: solid;
+    }
+
+    #tipo{
+        padding: 10px 15px;
+        text-align: center;
+        writing-mode: vertical-rl;
+        background: #aaa;
+    }
+
+    #icon_cursos{
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-size: 50px;
+        display: block;
+        text-align: center;
     }
 
 	@media screen and (max-width: 550px) {
@@ -62,24 +83,57 @@
 
 </style>
 
-    {% if videos %}
+    {% if videos or cursos %}
         <div class="alert">
             <i class="fas fa-search"></i>Resultado(s) da busca por <b>{{ busca }}</b>
         </div>
-        <div class="container">
+        {% if videos %}
             
-            {% for video in videos %}
-                <div id="itens">
-                    <a href="{{ video.slug }}">
-                        <p><b>Vídeo:</b> {{ video.title }}</p>
-                        <p><b>Curso:</b> {{ video.curso }}</p>
-                        <p><b>Duração:</b> {{ video.segundos }}s</p>
-                    </a>
-                </div>
+            <div class="container">
                 
-            {% endfor %}
- 
-        </div><!-- fim container -->
+                {% for video in videos %}
+                    <div id="itens">
+                        <div id="tipo">
+                            Vídeo
+                        </div>
+                        <a href="{{ video.slug }}">
+                            <p><b>Vídeo:</b> {{ video.title }}</p>
+                            <p><b>Curso:</b> {{ video.curso }}</p>
+                            <p><b>Duração:</b> {{ video.segundos }}s</p>
+                            {% for curso in cursos %}
+                                {% if video.curso.id == curso.id %}
+                                    <i id="icon_cursos" class="{{ curso.description }}"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </a>
+                        </div> 
+                {% endfor %}
+
+            </div><!-- fim container -->
+
+        {% endif %}
+      
+        {% if cursos %}
+
+            <div class="container">
+                
+                {% for curso in cursos %}
+                    <div id="itens">
+                        <div id="tipo">
+                            Curso
+                        </div>
+                        <a href="{% url 'cursos:video_por_cursos' curso.id %}">
+                            <p><b>Curso:</b> {{ curso.title }}</p>
+                            <p><b>Criado em:</b> {{ curso.created_at }}</p>
+                            <i id="icon_cursos" class="{{ curso.description }}"></i>
+                        </a>
+                        </div> 
+                {% endfor %}
+
+            </div><!-- fim container -->
+
+        {% endif %}
+
     {% else %}
         <div class="alert">
             <i class="fas fa-search"></i>Resultado(s) da busca por {{ busca }}
