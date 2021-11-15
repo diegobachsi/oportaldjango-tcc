@@ -83,25 +83,46 @@
 
     <div class="container">
 	    
-    	<div class="painel-2">
-            
-        {% for curso in cursos %}
-           <p id="title_curso">Curso: {{ curso.title }}</p>
-            {% for video in videos %}
-                <a id="menu_videos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
+        {% if cursos %}
+            <div class="painel-2">
+                
+            {% for curso in cursos %}
+            <p id="title_curso">Curso: {{ curso.title }}</p>
+                {% for video in videos %}
+                    <a id="menu_videos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
-	          
-        </div><!-- fim painel-2 -->
+                
+            </div><!-- fim painel-2 -->
 
-    	<div class="painel-1" >
-          	 
-            <i class="fas fa-hand-peace"></i>
-            <h5>Parabéns! Você finalizou o vídeo:</h5>
-            <p id="title_video_assistido">{{ video.title }}</p>
-            <p>Estamos orgulhosos do seu desempenho, continue assim.</p>
+            <div class="painel-1" >
+                
+                <i class="fas fa-hand-peace"></i>
+                <h5>Parabéns! Você finalizou o vídeo:</h5>
+                <p id="title_video_assistido">{{ video.title }}</p>
+                <p>Estamos orgulhosos do seu desempenho, continue assim.</p>
 
-    	</div><!-- fim painel-1 -->
+            </div><!-- fim painel-1 -->
+        {% else %}
+
+            <style>
+
+                .container{
+                    grid-template-columns: 100%;
+                }
+
+            </style>
+
+            <div class="painel-1" >
+                    
+                <i class="fas fa-hand-peace"></i>
+                <h5>Parabéns! Você finalizou o vídeo:</h5>
+                <p id="title_video_assistido">{{ video.title }}</p>
+                <p>Estamos orgulhosos do seu desempenho, continue assim.</p>
+
+            </div><!-- fim painel-1 -->
+
+        {% endif %}
 		
     </div>
 
