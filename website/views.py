@@ -1,5 +1,5 @@
 from videos.models import WatchedVideo, Videos
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 
 from .forms import Contact
@@ -58,3 +58,25 @@ def sessiongamer(request):
 @login_required(login_url='accounts:login')
 def alterar_tema(request):
 	return render(request, 'alterar_tema.html')
+
+@login_required(login_url='accounts:login')
+def buscar(request):
+
+    lista_videos = Videos.objects.filter(title__icontains=request.GET['buscar'])
+
+    context = {
+        'videos': lista_videos,
+        'busca': request.GET['buscar'],
+    }
+
+    return render(request, 'buscar.html', context)
+
+@login_required(login_url='accounts:login')
+def details(request, slug):
+    video = get_object_or_404(Videos,slug=slug)
+
+    context = {
+        'video': video,
+    }
+    template_name = 'details_buscar_videos.html'
+    return render(request, template_name, context)

@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Lista de Tarefas{% endblock %}
+
+{% block content %}
+
+
+<style>
+
+    .alert a{
+    	border: 1px solid #0e30a1;
+    	text-decoration: none;
+    	padding: 5px;
+    	margin: 10px;
+    	color: #0e30a1;
+    }
+
+	.container{
+		grid-template-columns: 50% 50%;
+	}
+
+    .container-2{
+        display: grid;
+        grid-template-columns: 100%;
+        margin: 50px 50px;
+	}
+
+    #triangulo{
+        font-size: 100px;
+        color: #bbb;
+        margin: 0 auto;
+    }
+
+    #msg_busca{
+        color: #bbb;
+        margin: 0 auto;
+        padding-top: 20px;
+    }
+
+    .container a{
+        text-decoration: none;
+        text-align: center;
+        margin: 10px;
+        color: #073f2c;
+    }
+
+    #itens{
+        background-color:#cde0f8;
+        margin: 10px;
+        border: 1px solid #aaa;
+    }
+
+	@media screen and (max-width: 550px) {
+
+		.alert{
+			font-size: 12px;
+		}
+		
+	}
+
+</style>
+
+    {% if videos %}
+        <div class="alert">
+            <i class="fas fa-search"></i>Resultado(s) da busca por <b>{{ busca }}</b>
+        </div>
+        <div class="container">
+            
+            {% for video in videos %}
+                <div id="itens">
+                    <a href="{{ video.slug }}">
+                        <p><b>Vídeo:</b> {{ video.title }}</p>
+                        <p><b>Curso:</b> {{ video.curso }}</p>
+                        <p><b>Duração:</b> {{ video.segundos }}s</p>
+                    </a>
+                </div>
+                
+            {% endfor %}
+ 
+        </div><!-- fim container -->
+    {% else %}
+        <div class="alert">
+            <i class="fas fa-search"></i>Resultado(s) da busca por {{ busca }}
+        </div>
+        <div class="container-2">
+            <i id="triangulo" class="fas fa-exclamation-triangle"></i>
+            <div id="msg_busca">Ops! Nenhum dado encontrado para a busca por {{ busca }}</div>
+        </div><!-- fim container -->
+    {% endif %}
+
+{% endblock %}

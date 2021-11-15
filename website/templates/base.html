@@ -48,6 +48,10 @@
     </script>
     
     <style type="text/css">
+
+    .form-inline{
+        margin: 10px;
+    }
     
     body.offcanvas-active{
         overflow:hidden;
@@ -156,6 +160,10 @@
         display: none;
       }
 
+      .form-inline{
+        display: none;
+      }
+
       .navbar-nav{
         visibility: visible;
       }
@@ -180,82 +188,14 @@
 </head>
 
 <body>
-    <div class="header_menu">
-        <div class="menu-pc">
-            <a href="{% url 'website:index' %}"><i class="fas fa-home"></i> Home </a>
-            <a href="{% url 'topicos:index' %}"><i class="fas fa-folder-open"></i> Tópicos </a>
-            <a href="{% url 'cursos:index' %}"><i class="fas fa-video"></i> Cursos </a>
-            <a href="{% url 'website:session_gamer' %}"><i class="fas fa-book"></i> Área Estudos </a> 
-            <a href="{% url 'website:contato' %}"><i class="fas fa-envelope"></i> Contatos </a>   
-        </div>
-        <div class="user_logado">
-            <div class="dropdown">
-                <div class="dropbtn">Olá, {{ user.get_username }}. <i class="fas fa-chevron-circle-down"></i></div>
-                <div class="dropdown-content">
-                    <a href="{% url 'website:config' %}"><i class="fas fa-cog"></i> Configurações </a>
-                    <a href="{% url 'accounts:logout' %}"><i class="fas fa-times-circle"></i> Sair</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
+    {% include 'partials/navbar.html' %}
     
-    <div class="header">
-
-        <div class="logotipo">
-            <a href="{% url 'website:index' %}"><img style="border-radius: 7px;" src="{% static 'images/logo-django.png' %}" /></a>
-        </div>
-
-        
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="#"></a>
-            <button class="navbar-toggler" type="button" data-trigger="#main_nav">
-               <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="navbar-collapse" id="main_nav">
-        
-                <div class="offcanvas-header mt-3">  
-                    <button class="btn btn-outline-danger btn-close float-right"> &times Fechar </button>
-                    <h5 class="py-2 text-white">Menu</h5>
-                </div>
-            
-                <ul class="navbar-nav menu">
-                    <li class="nav-item active"> <a class="nav-link" href="{% url 'website:index' %}">Home </a> </li>
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'topicos:index' %}"> Tópicos </a></li>
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'cursos:index' %}"> Cursos </a></li>
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'website:session_gamer' %}"> Área Estudos </a>
-                    <li class="nav-item active"><a class="nav-link" href="{% url 'website:contato' %}"> Contato </a></li>
-                </ul>
-            
-            </div> <!-- navbar-collapse.// -->
-    
-        </nav>
-        
-
-        <div class="redes-sociais">
-            <a href="#"><i class="fab fa-facebook-square"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-
-    </div><!-- fim header -->
+    {% include 'partials/header.html' %}
 
     {% block content %}{% endblock %}
 
-    <div class="footer">
-        <div>
-            <p><i class="far fa-copyright"></i> O Portal Django</p>
-            <p style="font-size: 12px;">2021</p>
-            <p style="font-size: 12px;">Projeto de TCC</p>
-            <p style="font-size: 12px;">FATEC - Ribeirão Preto - SP</p>
-        </div>
-        <div> 
-            <p style="font-size: 12px;">Desenvolvido por:<p> 
-            <p>Diego Costa Alves</p>
-            <p>Edson Carlos Silveira</p>
-        </div>
-    </div><!-- fim footer -->
+    {% include 'partials/footer.html' %}
 
   </body>
 

@@ -2,93 +2,65 @@
 
 {% load static %}
 
-{% load my_tags %}
-
-{% block title %}Lista de Vídeos{% endblock %}
+{% block title %}Lista de Tarefas{% endblock %}
 
 {% block content %}
 
-    <style>
 
-    .painel-1 p{
-        padding-bottom: 10px;
+<style>
+
+    .container{
+		grid-template-columns: 100%;
+	}
+
+    .alert a{
+    	border: 1px solid #0e30a1;
+    	text-decoration: none;
+    	padding: 5px;
+    	margin: 10px;
+    	color: #0e30a1;
     }
 
-    .painel-2 a {
-        font-size: 14px;
-        background-color:#a9eeb2;
-        display: block;
-        text-decoration: none;
-        color: #073f2c;
-        text-align: left;
-        border: 1px solid #aaa;
-        border-radius: 5px;
-        margin: 5px;
+    .alert a:hover{
+    	color: #000;
+    	background: #eee;
     }
 
-    .painel-2 a:hover {
-        color: #368d42;
-        background-color: #eee;
-    }
+	.painel-2 i{
+		font-size: 100px;
+		display: block;
+		margin-top: 15px;
+	}
 
-    #description{
-        text-align: justify;
-    }
+	@media screen and (max-width: 550px) {
 
-    #icon_video{
-        font-size: 15px;
-        margin: 5px 0px;
-    }
-
-    #menu_videos{
-        padding: 10px 20px;
-        font-size: 16px;
-    }
-
-    #title_curso{
-        color: #000;
-        border-bottom: 1px solid #aaa;
-        padding: 10px;
-        padding-bottom: 20px;
-    }
-
-	@media screen and (max-width: 1000px) {
-		
 		.container{
-		    display: grid;
 		    grid-template-columns: auto;
 		    margin: 50px 0;
 		}
+		
+		.painel-2{
+			display: none !important;
+		}
+
+		.alert{
+			font-size: 12px;
+		}
+		
 	}
 
-    </style>
+</style>
 
-    <div class="alert">
-        <i class="fas fa-folder-open"></i>
-        {% for curso in cursos %}
-          Área Cursos > {{ curso.title }} > {{ video.title }}
-        {% endfor %}
-    </div>
+	<div class="alert">
+		Busca realizada!
+	</div>
 
     <div class="container">
-    	    
-        <div class="painel-2">
-            
-          {% for curso in cursos %}
-          <p id="title_curso">Curso: {{ curso.title }}</p>
-            {% for video in videos %}
-                <a id="menu_videos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
-            {% endfor %}
-          {% endfor %}
-           
-        </div><!-- fim painel-2 -->
 
-    	<div class="painel-1">
-            
+        <div class="painel-1">
             <div id="player"></div>
-            
-    	</div><!-- fim painel-1 -->		
-        
+        </div>
+    
     </div><!-- fim container -->
 
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
@@ -107,13 +79,15 @@
             
             function onYouTubeIframeAPIReady() {
               player = new YT.Player('player', {
-                height: '400px',
+                height: '500',
                 width: '100%',
                 videoId: '{{ video.description }}',
                 events: {
                   'onReady': onPlayerReady,
                   'onStateChange': function(event){
                     if (event.data == 0) {
+                      
+                      console.log('{{ video.title }}');
 
                       window.location.href = "{{ video.title }}";
                       
@@ -144,5 +118,9 @@
             }
                 
     </script>
+
+    	
+	</div><!-- fim container -->
+	
 
 {% endblock %}
