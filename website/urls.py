@@ -13,4 +13,5 @@ urlpatterns = [
     path('alterar_tema/', views.alterar_tema, name='alterar_tema'),
     path('buscar/', views.buscar, name='buscar'),
     path('buscar/<slug:slug>', views.details, name='details'),
+    path('buscar/<title>', views.video_assistido, name='video_assistido')
 ]
