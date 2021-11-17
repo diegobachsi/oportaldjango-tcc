@@ -59,10 +59,11 @@
     }
 
     #tipo{
-        padding: 10px 15px;
+        padding: 13px;
         text-align: center;
         writing-mode: vertical-rl;
         background: #aaa;
+        border-right-style: dotted;
     }
 
     #icon_cursos{
@@ -73,13 +74,21 @@
         text-align: center;
     }
 
-	@media screen and (max-width: 550px) {
+    @media screen and (max-width: 992px) {
 
-		.alert{
+        .alert{
 			font-size: 12px;
 		}
-		
-	}
+
+        .container{
+		    grid-template-columns: 100%;
+	    }
+
+        #tipo{
+            padding: 6px;
+        }
+
+    }
 
 </style>
 
@@ -94,7 +103,8 @@
                 {% for video in videos %}
                     <div id="itens">
                         <div id="tipo">
-                            Vídeo
+                            <i class="fas fa-video"></i>
+                            <b>VIDEO</b>
                         </div>
                         <a href="{{ video.slug }}">
                             <p><b>Vídeo:</b> {{ video.title }}</p>
@@ -106,7 +116,7 @@
                                 {% endif %}
                             {% endfor %}
                         </a>
-                        </div> 
+                    </div> 
                 {% endfor %}
 
             </div><!-- fim container -->
@@ -120,14 +130,15 @@
                 {% for curso in cursos %}
                     <div id="itens">
                         <div id="tipo">
-                            Curso
+                            <i class="fas fa-folder-open"></i>
+                            <b>CURSO</b>
                         </div>
                         <a href="{% url 'cursos:video_por_cursos' curso.id %}">
                             <p><b>Curso:</b> {{ curso.title }}</p>
                             <p><b>Criado em:</b> {{ curso.created_at }}</p>
                             <i id="icon_cursos" class="{{ curso.description }}"></i>
                         </a>
-                        </div> 
+                    </div> 
                 {% endfor %}
 
             </div><!-- fim container -->
