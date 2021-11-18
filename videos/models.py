@@ -21,7 +21,7 @@ class Videos(models.Model):
 
     segundos = models.IntegerField('Segundos', blank=True)
 
-    created_at = models.DateTimeField('Assistido em:', auto_now_add=True)
+    watched_at = models.DateTimeField('Assistido em:', auto_now_add=True)
 
     objects = VideosManager()
 
@@ -31,13 +31,15 @@ class Videos(models.Model):
     class Meta:
         verbose_name = 'Videos'
         verbose_name_plural = 'Videos'
-        ordering = ['created_at']
+        ordering = ['watched_at']
 
 class WatchedVideo(models.Model):
 
     user = models.CharField('Usuário', max_length=100)
 
     title = models.CharField('Título Vídeo', max_length=255)
+
+    curso = models.CharField('Curso Vídeo', max_length=255)
 
     def __str__(self):
         return self.title

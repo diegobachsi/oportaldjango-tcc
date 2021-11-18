@@ -42,7 +42,7 @@ def video_assistido(request, id, title):
     if verifica_video_assistido:
         pass
     else:    
-        video_assistido = WatchedVideo(user=request.user, title=video)
+        video_assistido = WatchedVideo(user=request.user, title=video, curso=id)
         video_assistido.save()
 
     return render(request, 'video_assistido.html', context)

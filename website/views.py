@@ -1,3 +1,4 @@
+from typing import List
 from cursos.models import Cursos
 from videos.models import WatchedVideo, Videos
 from django.shortcuts import get_object_or_404, render
@@ -65,14 +66,21 @@ def buscar(request):
 
     lista_videos = Videos.objects.filter(title__icontains=request.GET['buscar'])
     lista_cursos = Cursos.objects.filter(title__icontains=request.GET['buscar'])
+    lista_videos_assistidos = WatchedVideo.objects.filter(user=request.user, title__icontains=request.GET['buscar'])
+
+    qtd_videos_por_curso = []
+    for i in range(lista_cursos.count()):
+        qtd_videos_por_curso.append(Videos.objects.filter(curso=lista_cursos.values('id')[i]['id']).count())
+
+    print(qtd_videos_por_curso)
 
     context = {
         'videos': lista_videos,
         'cursos': lista_cursos,
         'busca': request.GET['buscar'],
+        'videos_assistidos': lista_videos_assistidos,
+        'qtd_videos_por_curso': qtd_videos_por_curso
     }
-
-    print(lista_videos)
 
     return render(request, 'buscar.html', context)
 
@@ -93,11 +101,13 @@ def video_assistido(request, title):
         'video': video,
     }
 
+    curso = Videos.objects.filter(title=title).values('curso')
+
     verifica_video_assistido = WatchedVideo.objects.filter(user=request.user, title=video) #realiza consulta no bd para ver se o user current já assistiu o video em questão
     if verifica_video_assistido:
         pass
     else:    
-        video_assistido = WatchedVideo(user=request.user, title=video)
+        video_assistido = WatchedVideo(user=request.user, title=video, curso=curso)
         video_assistido.save()
 
     return render(request, 'video_assistido.html', context)
