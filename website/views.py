@@ -1,5 +1,5 @@
 from typing import List
-from cursos.models import Cursos
+from cursos.models import Cursos, ProgressoCurso
 from videos.models import WatchedVideo, Videos
 from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
@@ -68,18 +68,14 @@ def buscar(request):
     lista_cursos = Cursos.objects.filter(title__icontains=request.GET['buscar'])
     lista_videos_assistidos = WatchedVideo.objects.filter(user=request.user, title__icontains=request.GET['buscar'])
 
-    qtd_videos_por_curso = []
-    for i in range(lista_cursos.count()):
-        qtd_videos_por_curso.append(Videos.objects.filter(curso=lista_cursos.values('id')[i]['id']).count())
-
-    print(qtd_videos_por_curso)
+    lista_progresso_curso = ProgressoCurso.objects.filter(user=request.user)
 
     context = {
         'videos': lista_videos,
         'cursos': lista_cursos,
         'busca': request.GET['buscar'],
         'videos_assistidos': lista_videos_assistidos,
-        'qtd_videos_por_curso': qtd_videos_por_curso
+        'lista_progresso_curso': lista_progresso_curso
     }
 
     return render(request, 'buscar.html', context)
@@ -102,12 +98,23 @@ def video_assistido(request, title):
     }
 
     curso = Videos.objects.filter(title=title).values('curso')
+    id_curso = curso[0]['curso']
 
+    
     verifica_video_assistido = WatchedVideo.objects.filter(user=request.user, title=video) #realiza consulta no bd para ver se o user current já assistiu o video em questão
     if verifica_video_assistido:
         pass
     else:    
         video_assistido = WatchedVideo(user=request.user, title=video, curso=curso)
         video_assistido.save()
+
+        
+        qtd_video_por_curso = Videos.objects.filter(curso=id_curso).count()
+        qtd_video_assistido_por_curso = WatchedVideo.objects.filter(user=request.user, curso=id_curso).count()
+        progresso_por_curso = (qtd_video_assistido_por_curso / qtd_video_por_curso) * 100
+
+        grava_progresso = ProgressoCurso(user=request.user, curso=id_curso, progresso=progresso_por_curso)
+        grava_progresso.save()
+        
 
     return render(request, 'video_assistido.html', context)

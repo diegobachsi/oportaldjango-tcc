@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render
 
 from .models import Videos, WatchedVideo
-from cursos.models import Cursos
+from cursos.models import Cursos, ProgressoCurso
 
 @login_required(login_url='accounts:login')
 def videos(request):
@@ -44,5 +44,12 @@ def video_assistido(request, id, title):
     else:    
         video_assistido = WatchedVideo(user=request.user, title=video, curso=id)
         video_assistido.save()
+
+        qtd_video_por_curso = Videos.objects.filter(curso=id).count()
+        qtd_video_assistido_por_curso = WatchedVideo.objects.filter(user=request.user, curso=id).count()
+        progresso_por_curso = (qtd_video_assistido_por_curso / qtd_video_por_curso) * 100
+
+        grava_progresso = ProgressoCurso(user=request.user, curso=id, progresso=progresso_por_curso)
+        grava_progresso.save()
 
     return render(request, 'video_assistido.html', context)

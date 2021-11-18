@@ -27,3 +27,11 @@ class Cursos(models.Model):
         verbose_name = 'Cursos'
         verbose_name_plural = 'Cursos'
         ordering = ['created_at']
+
+class ProgressoCurso(models.Model):
+
+    user = models.CharField('Usuário', max_length=100)
+
+    curso = models.IntegerField('Id Curso')
+
+    progresso = models.FloatField('Progresso Curso')

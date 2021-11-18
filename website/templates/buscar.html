@@ -75,8 +75,14 @@
     }
 
     #check_video_assistido{
-        color: lawngreen;
+        color: #228B22;
         font-size: 50px;
+    }
+
+    #progresso{
+        font-size: 18px;
+        color: #228B22;
+        border: 1px dotted #228B22;
     }
 
     @media screen and (max-width: 992px) {
@@ -147,6 +153,13 @@
                             <p><b>Curso:</b> {{ curso.title }}</p>
                             <p><b>Criado em:</b> {{ curso.created_at }}</p>
                             <i id="icon_cursos" class="{{ curso.description }}"></i>
+                            {% for item in lista_progresso_curso %}
+                                {% if curso.id == item.curso %}
+                                    <p id="progresso">
+                                        <b>Progresso: {{ item.progresso }}%</b>
+                                    </p>
+                                {% endif %}
+                            {% endfor %}
                         </a>
                     </div> 
                 {% endfor %}
