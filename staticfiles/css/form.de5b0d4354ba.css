@@ -1,0 +1,115 @@
+
+form{
+	width: 96%;
+	max-width: 600px;
+	margin:30px auto; 
+	text-align: center;
+}
+
+form fieldset{
+	padding: 20px 40px;
+	border:1px solid #ccc;
+}
+
+form legend{
+	text-align: left;
+	font-size: 17px;
+	color:rgb(130,130,130);
+}
+
+
+form input[type=email], input[type=text]{
+	font-family: tahoma;
+	display: inline-block;
+	margin-top:30px;
+	width: 80%;
+	padding: 10px 13px;
+	border:1px solid #ccc;
+	border-radius: 5px;
+}
+
+
+form input[type=text]:focus, form select:focus, form textarea:focus{
+	outline: 0;
+}
+
+form input[type=email]:focus, form select:focus, form textarea:focus{
+	outline: 0;
+}
+
+form input[type=submit]:focus{
+	outline: 0;
+	box-shadow: 0 0 1pt 1pt #073f2c;
+}
+
+
+form select{
+	font-family: tahoma;
+	color:rgb(100,100,100);
+	width:calc(80% + 26px);
+	margin-top:30px;
+	padding: 10px 13px;
+	display: inline-block;
+	border:1px solid #ccc;
+	border-radius: 5px;
+}
+
+form h2{
+	margin-top:20px;
+	color: rgb(100,100,100);
+}
+
+.input{
+	display: inline-block;
+	text-align: left;
+	margin-top:20px;
+}
+
+.input span{
+	margin-left: 13px;
+	font-size: 16px;
+	color: rgb(130,130,130);
+}
+
+form textarea{
+	font-family: tahoma;
+	border: 1px solid #ccc;
+	margin-top:30px;
+	width: 80%;
+	height: 140px;
+	padding: 10px 13px;
+	resize: none;
+}
+
+form input[type=submit]{
+	margin: 30px 0;
+	border:0;
+	 width: 140px;
+	 height: 40px;
+	 font-size: 16px;
+	 cursor: pointer;
+	 border: 2px solid #fff;
+	 color: #fff;
+	 background-color: #073f2c;
+	border-radius: 10px;
+ }
+ 
+ form input[type=submit]:hover{
+	 background-color: #3a7a65;
+ }
+
+ ::-webkit-input-placeholder {
+	color: #073f2c;
+ }
+ 
+ :-moz-placeholder { /* Firefox 18- */
+	color: #073f2c;  
+ }
+ 
+ ::-moz-placeholder {  /* Firefox 19+ */
+	color: #073f2c;  
+ }
+ 
+ :-ms-input-placeholder {  
+	color: #073f2c;  
+ }
