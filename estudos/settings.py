@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$+r+anux9dvm#^mt0*i#k+d2-tzmf92xilj%1fyqgnji7@w7s_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['oportaldjango.herokuapp.com']
 
@@ -144,17 +144,15 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-if not DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_PORT = 587
-    EMAIL_HOST_USER = 'equipe.gdek@gmail.com'
-    #EMAIL_HOST_PASSWORD = 'gmail2020django'
-    EMAIL_HOST_PASSWORD = 'tjdeebkhmanprbmz'
-    EMAIL_USE_TLS = True
-    EMAIL_USE_SSL = False
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'equipe.gdek@gmail.com'
+#EMAIL_HOST_PASSWORD = 'gmail2020django'
+EMAIL_HOST_PASSWORD = 'tjdeebkhmanprbmz'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 DEFAULT_FROM_EMAIL = 'equipe.gdek@gmail.com'
 
