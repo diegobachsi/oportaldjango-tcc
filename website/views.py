@@ -12,8 +12,26 @@ def index(request):
     qtd_videos_assistidos = WatchedVideo.objects.filter(user=request.user).count()
     total_videos = Videos.objects.all().count()
 
+    cursos = Cursos.objects.all()
+    cursos_concluidos = ProgressoCurso.objects.filter(user=request.user,progresso=100)
+    cursos_andamento = ProgressoCurso.objects.filter(user=request.user,progresso__range=[1,99])
+
+    for i in cursos.values('id'):
+        verifica_curso_iniciado = ProgressoCurso.objects.filter(user=request.user, curso=i['id'])
+        if verifica_curso_iniciado:
+            pass
+        else:
+            grava_progresso = ProgressoCurso(user=request.user, curso=i['id'], progresso=0)
+            grava_progresso.save()
+
+    cursos_nao_iniciados = ProgressoCurso.objects.filter(user=request.user,progresso=0)
+
     context = {
-        'progresso': '{:.0f}'.format((qtd_videos_assistidos/total_videos) * 100)
+        'progresso': '{:.0f}'.format((qtd_videos_assistidos/total_videos) * 100),
+        'cursos': cursos,
+        'cursos_andamento': cursos_andamento,
+        'cursos_concluidos': cursos_concluidos,
+        'cursos_nao_iniciados': cursos_nao_iniciados
     }
     
     return render(request, 'index.html', context)
@@ -75,7 +93,7 @@ def buscar(request):
         'cursos': lista_cursos,
         'busca': request.GET['buscar'],
         'videos_assistidos': lista_videos_assistidos,
-        'lista_progresso_curso': lista_progresso_curso
+        'lista_progresso_curso': lista_progresso_curso,
     }
 
     return render(request, 'buscar.html', context)

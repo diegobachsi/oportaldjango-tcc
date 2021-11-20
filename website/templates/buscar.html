@@ -82,7 +82,6 @@
     #progresso{
         font-size: 18px;
         color: #228B22;
-        border: 1px dotted #228B22;
     }
 
     @media screen and (max-width: 992px) {
@@ -152,14 +151,26 @@
                         <a href="{% url 'cursos:video_por_cursos' curso.id %}">
                             <p><b>Curso:</b> {{ curso.title }}</p>
                             <p><b>Criado em:</b> {{ curso.created_at }}</p>
-                            <i id="icon_cursos" class="{{ curso.description }}"></i>
-                            {% for item in lista_progresso_curso %}
+                            <i id="icon_cursos" class="{{ curso.description }}"></i></br>
+
+                            {% for item in lista_progresso_curso %}                         
                                 {% if curso.id == item.curso %}
-                                    <p id="progresso">
-                                        <b>Progresso: {{ item.progresso }}%</b>
-                                    </p>
+                                    {% if item.progresso == 0 %}
+                                        <p id="progresso">
+                                            <b>Curso não iniciado</b>
+                                        </p>
+                                    {% elif item.progresso == 100 %}
+                                        <p id="progresso">
+                                            <b>Progresso: {{ item.progresso }}% <i id="check_video_assistido" class="fas fa-check-double"></i></b>
+                                        </p>
+                                    {% else %}
+                                        <p id="progresso">
+                                            <b>Progresso: {{ item.progresso }}%</b>
+                                        </p>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
+ 
                         </a>
                     </div> 
                 {% endfor %}
