@@ -119,37 +119,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'WARNING',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'debug.log'),
-        },
-    },
-    'mail_admins': {
-              'level': 'ERROR',
-              'class': 'django.utils.log.AdminEmailHandler'
-    },
-    'loggers': {
-          'django': {
-              'handlers': ['file', 'mail_admins'],
-              'level': 'INFO',
-              'propagate': True,
-           },
-    },
-    'filters': {
-           'require_debug_false': {
-              '()': 'django.utils.log.RequireDebugFalse',
-           },
-           'require_debug_true': {
-              '()': 'django.utils.log.RequireDebugTrue',
-           },
-    },  
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
