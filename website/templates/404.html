@@ -19,6 +19,18 @@
 		text-align: center;;
     }
 
+	h1 > i{
+        font-size: 100px;
+        padding-bottom: 30px;
+        color: #aaa;
+    }
+
+    #url{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: darkblue;
+    }
+
 	@media screen and (max-width: 550px) {
 
         .alert{
@@ -42,7 +54,7 @@
             </h1>
             
             <p>O endereço abaixo não existe em O Portal Django:</p>
-            <h1>{{ request.build_absolute_uri }}</h1>
+            <div id="url">{{ request.build_absolute_uri }}</div>
     	</div><!-- fim painel-1 -->
 		
     </div>
