@@ -119,6 +119,10 @@
         display: inline-block;
     }
 
+    .box-1 i{
+        color: #368d42;
+    }
+
     @media screen and (max-width: 1024px) {
 
         .container{
@@ -173,7 +177,7 @@
                 {% if videos %}
                     <p>Você já assistiu os seguintes vídeos:</p>
                     {% for video in videos %}
-                        - {{ video }}<br>
+                        <i class="fas fa-angle-right"></i> {{ video }}</br>
                     {% endfor %}
                 {% else %}
                     Você ainda não assistiu nenhum vídeo
