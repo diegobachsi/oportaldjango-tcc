@@ -19,55 +19,24 @@
         padding-right: 35px;
     }
 
-    .painel-1 a{
-        font-size: 20px;
-        background-color:#cde0f8;
-        display: inline-block;
-        text-decoration: none;
-        color: #073f2c;
-        border: 1px solid #aaa;
-        padding: 20px;
-        margin: 10px;
-        width: 30%;
-        text-align: center;
-    }
+	@media screen and (max-width: 550px) {
 
-    .painel-1 a:hover {
-        color: #368d42;
-        background-color: #eee;
-    }
-
-    #icon_cursos{
-        margin-right: 10px;
-        margin-bottom: 10px;
-        font-size: 50px;
-        display: block;
-        text-align: center;
-    }
-
-	@media screen and (max-width: 1000px) {
-
-        .painel-1{
-            font-size: 50px;
-        }
-		
-        .painel-1 a{
-            width: 100%;
-        }
-
+        .alert{
+			font-size: 12px;
+		}
 	}
 
     </style>
 
     <div class="alert">
-        <i class="fas fa-folder-open"></i>
-        Área Cursos
+        <i class="fas fa-exclamation-triangle"></i>
+		Página não encontrada!
     </div>
 
     <div class="container">
 	    
     	<div class="painel-1">
-			{{ request.build_absolute_uri }}
+			<p>{{ request.build_absolute_uri }}</p>
     	</div><!-- fim painel-1 -->
 		
     </div>
