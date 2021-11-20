@@ -2,65 +2,74 @@
 
 {% load static %}
 
-{% block title %}Lista de Tarefas{% endblock %}
+{% load my_tags %}
+
+{% block title %}Lista de Cursos{% endblock %}
 
 {% block content %}
 
+    <style>
 
-<style>
-
-    .alert a{
-    	border: 1px solid #0e30a1;
-    	text-decoration: none;
-    	padding: 5px;
-    	margin: 10px;
-    	color: #0e30a1;
-    }
-
-    .alert a:hover{
-    	color: #000;
-    	background: #eee;
-    }
-
-	.container{
-		grid-template-columns: auto;
+    .container{
+		display: grid;
+		grid-template-columns: 100%;
 	}
 
-    h1 > i{
-        font-size: 100px;
-        padding-bottom: 30px;
-        color: #aaa;
+    .painel-1{
+        padding-right: 35px;
     }
 
+    .painel-1 a{
+        font-size: 20px;
+        background-color:#cde0f8;
+        display: inline-block;
+        text-decoration: none;
+        color: #073f2c;
+        border: 1px solid #aaa;
+        padding: 20px;
+        margin: 10px;
+        width: 30%;
+        text-align: center;
+    }
 
-	@media screen and (max-width: 550px) {
+    .painel-1 a:hover {
+        color: #368d42;
+        background-color: #eee;
+    }
 
-		.alert{
-			font-size: 12px;
-		}
+    #icon_cursos{
+        margin-right: 10px;
+        margin-bottom: 10px;
+        font-size: 50px;
+        display: block;
+        text-align: center;
+    }
+
+	@media screen and (max-width: 1000px) {
+
+        .painel-1{
+            font-size: 50px;
+        }
+		
+        .painel-1 a{
+            width: 100%;
+        }
 
 	}
 
-</style>
+    </style>
 
-	<div class="alert">
-		<i class="fas fa-exclamation-triangle"></i>
-		Página não encontrada!
-	</div>
+    <div class="alert">
+        <i class="fas fa-folder-open"></i>
+        Área Cursos
+    </div>
 
     <div class="container">
 	    
-		<div class="painel-1">
-            <h1>
-                <i class="fas fa-exclamation-triangle"></i></br>
-                Caro Usuário, 
-            </h1>
-            
-            <p>O endereço abaixo não existe em O Portal Django:</p>
-            <h1>{{ request.build_absolute_uri }}</h1>
-        </div>
-    	
-	</div><!-- fim container -->
-	
+    	<div class="painel-1">
+			{{ request.build_absolute_uri }}
+    	</div><!-- fim painel-1 -->
+		
+    </div>
 
 {% endblock %}
