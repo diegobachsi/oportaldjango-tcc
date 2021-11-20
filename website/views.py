@@ -113,8 +113,13 @@ def video_assistido(request, title):
         qtd_video_assistido_por_curso = WatchedVideo.objects.filter(user=request.user, curso=id_curso).count()
         progresso_por_curso = (qtd_video_assistido_por_curso / qtd_video_por_curso) * 100
 
-        grava_progresso = ProgressoCurso(user=request.user, curso=id_curso, progresso=progresso_por_curso)
-        grava_progresso.save()
+        verifica_curso_iniciado = ProgressoCurso.objects.filter(user=request.user, curso=id_curso)
+
+        if verifica_curso_iniciado:
+             verifica_curso_iniciado.update(progresso=progresso_por_curso)
+        else:
+            grava_progresso = ProgressoCurso(user=request.user, curso=id_curso, progresso=progresso_por_curso)
+            grava_progresso.save()
         
 
     return render(request, 'video_assistido.html', context)
