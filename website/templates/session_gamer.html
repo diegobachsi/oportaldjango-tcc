@@ -68,17 +68,16 @@
 
     .barra{
         width: 100%;
-        padding: 15px;
         border: 1px solid #aaa;
         border-radius: 5px;
         display: inline-block;
-        padding: 0;
-        margin: 0;
+        padding: 1px;
     }
 
     .perc-barra{
         font-size: 15px;
-        color: #000;
+        padding: 15px;
+        color: #fff;
         text-align: center;
         background-color: #368d42;
         border-radius: 5px;
@@ -182,10 +181,25 @@
 
 		    </div><!-- fim box-1 -->
             <div class="box-2">
-                <p>Seu Progresso: <b>{{ progresso }}%</b></p>
+                {% if progresso != '100' %}
+                    <p>Seu Progresso Total é de <b>{{ progresso }}%</b>, continue avançando!</p>
+                {% else %}
+                    <p>Parabéns você assistiu todos os vídeos, esperamos que tenham avançado no conhecimento.</b></p>
+                {% endif %}
                 <div class="barra">
                    
                     <div class="perc-barra">
+
+                        {% if progresso == '0' %}
+                            
+                            <script>
+
+                                perc_barra = document.querySelector(".perc-barra");
+                                perc_barra.style.color = "#000";
+                        
+                            </script>
+                        {% endif %}
+                    
                         <b>{{ progresso }}%</b>
                     </div>
                    
