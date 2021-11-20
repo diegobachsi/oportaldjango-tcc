@@ -16,7 +16,7 @@
 	}
 
     .painel-1{
-        padding-right: 35px;
+		text-align: center;;
     }
 
 	@media screen and (max-width: 550px) {
@@ -36,7 +36,13 @@
     <div class="container">
 	    
     	<div class="painel-1">
-			<p>{{ request.build_absolute_uri }}</p>
+			<h1>
+                <i class="fas fa-exclamation-triangle"></i></br>
+                Caro Usuário, 
+            </h1>
+            
+            <p>O endereço abaixo não existe em O Portal Django:</p>
+            <h1>{{ request.build_absolute_uri }}</h1>
     	</div><!-- fim painel-1 -->
 		
     </div>
