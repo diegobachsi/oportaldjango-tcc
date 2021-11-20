@@ -164,7 +164,8 @@
 						{% if curso.id == item.curso %}
 							<a href="{% url 'cursos:video_por_cursos' curso.id %}">
 								<i id="icon_cursos" class="{{ curso.description }}"></i>
-								{{ curso.title }}
+								{{ curso.title }}</br></br>
+								Progresso: {{ item.progresso }}%
 							</a>
 						{% endif %}
 					{% endfor %}
