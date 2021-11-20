@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load my_tags %}
+
+{% block title %}Lista de Cursos{% endblock %}
+
+{% block content %}
+
+    <style>
+
+    .container{
+		display: grid;
+		grid-template-columns: 100%;
+	}
+
+    .painel-1{
+		text-align: center;;
+    }
+
+	h1 > i{
+        font-size: 100px;
+        padding-bottom: 30px;
+        color: #aaa;
+    }
+
+    #url{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: darkblue;
+    }
+
+	@media screen and (max-width: 550px) {
+
+        .alert{
+			font-size: 12px;
+		}
+	}
+
+    </style>
+
+    <div class="alert">
+        <i class="fas fa-exclamation-triangle"></i>
+		Página não encontrada!
+    </div>
+
+    <div class="container">
+	    
+    	<div class="painel-1">
+			<h1>
+                <i class="fas fa-exclamation-triangle"></i></br>
+                Caro Usuário, 
+            </h1>
+            
+            <p>O sistema se comportou, desculpe-nos pelo transtorno.</p>
+    	</div><!-- fim painel-1 -->
+		
+    </div>
+
+{% endblock %}
