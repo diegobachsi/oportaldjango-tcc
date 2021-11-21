@@ -2,7 +2,7 @@
 <div class="header">
 
     <div class="logotipo">
-        <a href="{% url 'website:index' %}"><img style="border-radius: 7px;" src="{% static 'images/logo-django.png' %}" /></a>
+        <a href="{% url 'website:index' %}"><img src="{% static 'images/logo-django.png' %}" /></a>
     </div>
 
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -31,9 +31,11 @@
     </nav>
     
     <div class="redes-sociais">
-        <a href="#"><i class="fab fa-facebook-square"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
+        <div class="elem">
+            <a href="#"><i class="fab fa-facebook-square"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
     </div>
 
 </div><!-- fim header -->
