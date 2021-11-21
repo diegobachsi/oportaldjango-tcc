@@ -55,7 +55,7 @@
     }
 
 	.painel-1{
-        padding-right: 35px;
+        padding-right: 25px;
     }
 
     .painel-1 a{
@@ -66,7 +66,7 @@
         color: #073f2c;
         border: 1px solid #aaa;
         padding: 20px;
-        margin: 10px;
+        margin: 10px 10px;
         width: 30%;
         text-align: center;
     }
@@ -80,8 +80,8 @@
 		text-align: center;
 		border: 1px solid #aaa;
 		background: #ddd;
+		margin: 20px 0px;
 		padding: 10px;
-		margin: 30px 0px;
 		border-radius: 5px;
 	}
 	
@@ -94,15 +94,24 @@
 		text-align: justify;
 	}
 
-	@media screen and (max-width: 550px) {
+	@media screen and (max-width: 992px) {
 
 		.container{
 		    grid-template-columns: auto;
 		    margin: 50px 0;
 		}
 		
-		.painel-2{
-			display: none !important;
+		.painel-2 img{
+			width: 40%;
+		}
+
+		.painel-2 i{
+			display: none;
+		}
+
+		.painel-1 a{
+			width: 100%;
+			margin: 10px 0px;
 		}
 
 		.alert{
