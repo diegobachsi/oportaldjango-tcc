@@ -69,7 +69,15 @@
 	    
     	<div class="painel-1">
             {% for curso in cursos %}
-                <a href="{% url 'cursos:video_por_cursos' curso.id %}"><i id="icon_cursos" class="{{ curso.description }}"></i> {{ curso.title }}</a>
+                {% for item in lista_progresso_curso %}
+                    {% if curso.id == item.curso %}
+                        <a href="{% url 'cursos:video_por_cursos' curso.id %}">
+                            <i id="icon_cursos" class="{{ curso.description }}"></i>
+                            <b>{{ curso.title }}</b></br>
+                            <i>Progesso: {{ item.progresso }}%</i>
+                        </a>
+                    {% endif %}
+                {% endfor %}
             {% endfor %}
     	</div><!-- fim painel-1 -->
 		

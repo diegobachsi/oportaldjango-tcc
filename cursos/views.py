@@ -4,15 +4,18 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render
 
-from .models import Cursos
+from .models import Cursos, ProgressoCurso
 
 @login_required(login_url='accounts:login')
 def cursos(request):
+
+    lista_progresso_curso = ProgressoCurso.objects.filter(user=request.user)
 
     cursos = Cursos.objects.all()
     template_name = 'cursos.html'
     context = {
         'cursos': cursos,
+        'lista_progresso_curso': lista_progresso_curso
     }
     return render(request, template_name, context)
 
