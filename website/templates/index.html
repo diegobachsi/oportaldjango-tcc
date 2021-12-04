@@ -69,6 +69,7 @@
         margin: 10px 10px;
         width: 30%;
         text-align: center;
+		border-radius: 10px;
     }
 
     .painel-1 a:hover {
@@ -92,6 +93,11 @@
 	#boas-vindas{
 		font-size: 18px;
 		text-align: justify;
+	}
+
+	#smile{
+		color:rgb(219, 94, 36);
+		font-size: 25px;
 	}
 
 	@media screen and (max-width: 992px) {
@@ -164,7 +170,10 @@
 					{% endfor %}
 				{% endfor %}
 			{% else %}
-				<p id="msg">Parabéns você já iniciou todos os cursos</p>
+				<p id="msg">
+					<i id="smile" class="far fa-grin-hearts"></i>
+					Parabéns! Você já iniciou todos os cursos
+				</p>
 			{% endif %}
 
 			<p id="status_cursos">Cursos em Andamento</p>
@@ -181,7 +190,10 @@
 					{% endfor %}
 				{% endfor %}
 			{% else %}
-				<p id="msg">Nenhum curso em andamento</span>
+				<p id="msg">
+					<i id="smile" class="far fa-meh"></i>
+					Nenhum curso em andamento
+				</p>
 			{% endif %}
 
 
@@ -198,7 +210,10 @@
 					{% endfor %}
 				{% endfor %}
 			{% else %}
-				<p id="msg">Nenhum curso concluído</p>
+				<p id="msg">
+					<i id="smile" class="far fa-meh"></i>
+					Nenhum curso concluído
+				</p>
 			{% endif %}
          
     	</div><!-- fim painel-1 -->
