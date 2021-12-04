@@ -10,16 +10,22 @@
 
     <style>
 
+    .container{
+		display: grid;
+		grid-template-columns: auto;
+	}
+
     .painel-2 a{
-        font-size: 14px;
+        font-size: 20px;
         background-color:#a9eeb2;
-        display: block;
         text-decoration: none;
         color: #073f2c;
-        text-align: left;
+        text-align: center;
         border: 1px solid #aaa;
         border-radius: 5px;
+        padding: 20px;
         margin: 5px;
+        width: 100%;
     }
 
     .painel-2 a:hover {
@@ -27,9 +33,16 @@
         background-color: #eee;
     }
 
-    .painel-1{
-        text-align: center;
-        font-size: 100px;
+    .painel-2{
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    #i_topico{
+        font-size: 30px;
+        margin: 10px;
+        padding-bottom: 15px;
+        color: #073f2c;
     }
 
 	@media screen and (max-width: 550px) {
@@ -40,8 +53,8 @@
 		    margin: 50px 0;
 		}
 
-        .painel-1{
-            font-size: 50px;
+        .painel-2{
+            width: 100%;
         }
 		
 	}
@@ -54,17 +67,15 @@
     </div>
 
     <div class="container">
-	    
-    	<div class="painel-2">
+
+    	<div class="painel-2" id="title">
+            <i id="i_topico" class="fas fa-paperclip"></i>
+            <i id="i_topico" class="fas fa-marker"></i>
+            <i id="i_topico" class="far fa-clipboard"></i>
             {% for topico in topicos %}
                 <a href="{{ topico.slug }}"> {{ topico.name }}</a>
-	        {% endfor %}
-        </div><!-- fim painel-2 -->
-
-    	<div class="painel-1" id="title">
-          	 <i class="fas fa-angle-double-left" ></i> TÓPICOS <i class="fas fa-angle-double-right" ></i> 
+            {% endfor %}
     	</div><!-- fim painel-1 -->
-		
         
     </div>
 
