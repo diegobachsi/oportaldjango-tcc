@@ -14,6 +14,16 @@
         padding-bottom: 10px;
     }
 
+    .painel-1 p a{
+        background-color: #fff;
+        color: blue;
+    }
+
+    .painel-1 p a:hover{
+        background-color: #fff;
+        color: rgb(128, 128, 223);
+    }
+
     .painel-2 a{
         font-size: 14px;
         background-color:#a9eeb2;
@@ -63,7 +73,9 @@
     	<div class="painel-1">
             
             <p style="color: green"; id="description">{{ topico.description }}</p>
-            {{ topico.about|linebreaks }}
+            
+            {{ topico.about|safe }}
+            
     	</div><!-- fim painel-1 -->		
         
     </div><!-- fim container -->
