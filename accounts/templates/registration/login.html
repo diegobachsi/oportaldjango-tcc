@@ -9,6 +9,15 @@
 
     <style>
 
+        html, body{
+            height: 100%;
+            overflow: visible;
+        }
+
+        .painel-2{
+            margin-bottom: 300px;
+        }
+
         .alertError {
             font-size: 15px;
             font-family: Arial, Helvetica, sans-serif;
@@ -42,6 +51,39 @@
             padding-right: 5px;
         }
 
+        @media screen and (max-width: 500px) {
+
+            .container{
+                margin-top: 20px;
+            }
+
+            .alertAuth{
+                font-size: 10px;
+            }
+
+            .header{
+                text-align: left;
+            }
+
+            .header p{
+                font-size: 20px;   
+            }
+
+            .header img{
+                margin: 20px;   
+            }
+
+            form{
+                width: 70%;
+                margin: 0 auto;
+                padding:0;
+            }
+
+            .links a{
+                font-size: 11px;
+            }
+
+        }
 
     </style>
 
@@ -69,23 +111,26 @@
     {% endif %}
 
     <div class="container">
-       
-        <form action="{% url 'accounts:login' %}" method="post">
-        {% csrf_token %}
-                
-           
-            <div>{{ form.username }}</div>
-            <div>{{ form.password }}</div>
 
-            <div>
-                <input type="submit" name="acao" value="Entrar">
-                <input type="hidden" name="next" value="{{ next }}" />
-            </div>
+        <div class="painel-2">
+       
+            <form action="{% url 'accounts:login' %}" method="post">
+            {% csrf_token %}   
             
-            <div class="links">
-                <i class="fas fa-smile"></i><a href="{% url 'accounts:register' %}">Novo aqui?</a>  <i class="fas fa-lock"></i><a href="/password_reset/">Esqueceu a senha?</a>
-            </div>
-        </form>
+                <div>{{ form.username }}</div>
+                <div>{{ form.password }}</div>
+
+                <div>
+                    <input type="submit" name="acao" value="Entrar">
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </div>
+                
+                <div class="links">
+                    <i class="fas fa-smile"></i><a href="{% url 'accounts:register' %}">Novo aqui?</a>  <i class="fas fa-lock"></i><a href="/password_reset/">Esqueceu a senha?</a>
+                </div>
+            </form>
+
+        </div>
         
     </div>
 
