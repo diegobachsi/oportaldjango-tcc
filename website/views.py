@@ -27,7 +27,7 @@ def index(request):
     cursos_nao_iniciados = ProgressoCurso.objects.filter(user=request.user,progresso=0)
 
     context = {
-        'progresso': '{:.0f}'.format((qtd_videos_assistidos/total_videos) * 100),
+        'progresso': '{:.2f}'.format((qtd_videos_assistidos/total_videos) * 100),
         'cursos': cursos,
         'cursos_andamento': cursos_andamento,
         'cursos_concluidos': cursos_concluidos,
@@ -70,7 +70,7 @@ def sessiongamer(request):
    
     context = {
         'videos': lista_videos,
-        'progresso': '{:.0f}'.format((qtd_videos_assistidos/total_videos) * 100)
+        'progresso': '{:.2f}'.format((qtd_videos_assistidos/total_videos) * 100)
     }
 
     return render(request, 'session_gamer.html', context)
