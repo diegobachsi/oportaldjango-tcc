@@ -20,7 +20,7 @@
         background-color:#a9eeb2;
         text-decoration: none;
         color: #073f2c;
-        text-align: center;
+        text-align: left;
         border: 1px solid #aaa;
         border-radius: 5px;
         padding: 20px;
@@ -43,6 +43,12 @@
         margin: 10px;
         padding-bottom: 15px;
         color: #073f2c;
+    }
+
+    #icon-button{
+        font-size: 25px;
+        color: #073f2c;
+        padding-right: 5px;
     }
 
 	@media screen and (max-width: 550px) {
@@ -73,7 +79,7 @@
             <i id="i_topico" class="fas fa-marker"></i>
             <i id="i_topico" class="far fa-clipboard"></i>
             {% for topico in topicos %}
-                <a href="{{ topico.slug }}"> {{ topico.name }}</a>
+                <a href="{{ topico.slug }}"><i id="icon-button" class="{{ topico.description }}"></i> {{ topico.name }}</a>
             {% endfor %}
     	</div><!-- fim painel-1 -->
         

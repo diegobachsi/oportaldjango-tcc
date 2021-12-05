@@ -10,6 +10,10 @@
 
     <style>
 
+    .painel-1{
+        text-align: justify;
+    }
+
     .painel-1 p{
         padding-bottom: 10px;
     }
@@ -27,7 +31,7 @@
     }
 
     .painel-2 a{
-        font-size: 14px;
+        font-size: 16px;
         background-color:#a9eeb2;
         display: block;
         text-decoration: none;
@@ -44,8 +48,15 @@
         background-color: #eee;
     }
 
-    #description{
-        text-align: justify;
+    #icon-button{
+        font-size: 25px;
+        color: #073f2c;
+        padding-right: 5px;
+    }
+
+    #icone{
+        font-size: 70px;
+        color: rgb(82, 80, 80);
     }
 
 	@media screen and (max-width: 1000px) {
@@ -67,13 +78,15 @@
     	    
         <div class="painel-2">
             {% for topico in topicos %}
-                <a href="{{ topico.slug }}"> {{ topico.name }}</a>
+                <a href="{{ topico.slug }}"> <i id="icon-button" class="{{ topico.description }}"></i> {{ topico.name }}</a>
             {% endfor %}
         </div><!-- fim painel-2 -->
 
     	<div class="painel-1">
-            
-            <p id="description">{{ topico.description }}</p>
+
+            <div style="text-align: center;">
+                <i id="icone" class="{{ topico.description }}"></i>
+            </div>
             
             {{ topico.about|safe }}
             
