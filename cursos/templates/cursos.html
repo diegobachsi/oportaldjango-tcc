@@ -73,8 +73,9 @@
                     {% if curso.id == item.curso %}
                         <a href="{% url 'cursos:video_por_cursos' curso.id %}">
                             <i id="icon_cursos" class="{{ curso.description }}"></i>
-                            <b>{{ curso.title }}</b></br>
-                            <i>Progesso: {{ item.progresso }}%</i>
+                            <b>{{ curso.title }}</b></br></br>
+                            <i>{{ item.progresso }}%</i></br>
+                            <progress id="file" value="{% widthratio item.progresso 1 1 %}" max="100"></progress>
                         </a>
                     {% endif %}
                 {% endfor %}
