@@ -1,4 +1,6 @@
 import math
+
+from django.core.paginator import Paginator
 from videos.models import Videos, WatchedVideo
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -51,13 +53,18 @@ def videos_por_cursos(request, id):
 
     for i in range(videos.count()):
         duration += segundos[i]['segundos']
+
+    count = videos.count()
+    paginator = Paginator(videos, 5)
+    page = request.GET.get('page')
+    videos = paginator.get_page(page)
     
     template_name = 'videos_por_cursos.html'
     context = {
         'videos': videos,
         'cursos': curso,
         'duration': duration,
-        'qtd_videos': videos.count(),
+        'qtd_videos': count,
         'videos_assistidos': lista_videos_assistidos
     }
     return render(request, template_name, context)

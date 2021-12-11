@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import Contact
 
-
 @login_required(login_url='accounts:login')
 def index(request):
     qtd_videos_assistidos = WatchedVideo.objects.filter(user=request.user).count()
@@ -17,9 +16,15 @@ def index(request):
     cursos_andamento = ProgressoCurso.objects.filter(user=request.user,progresso__range=[1,99])
 
     for i in cursos.values('id'):
+
         verifica_curso_iniciado = ProgressoCurso.objects.filter(user=request.user, curso=i['id'])
+
         if verifica_curso_iniciado:
-            pass
+            qtd_video_por_curso = Videos.objects.filter(curso=i['id']).count()
+            qtd_video_assistido_por_curso = WatchedVideo.objects.filter(user=request.user, curso=i['id']).count()
+            progresso_por_curso = (qtd_video_assistido_por_curso / qtd_video_por_curso) * 100
+
+            verifica_curso_iniciado.update(progresso=progresso_por_curso)
         else:
             grava_progresso = ProgressoCurso(user=request.user, curso=i['id'], progresso=0)
             grava_progresso.save()
