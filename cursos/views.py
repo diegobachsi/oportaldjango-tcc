@@ -1,8 +1,10 @@
 import math
-from videos.models import Videos
+from videos.models import Videos, WatchedVideo
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render
+
+from website.views import video_assistido
 
 from .models import Cursos, ProgressoCurso
 
@@ -34,11 +36,18 @@ def details(request, slug):
 @login_required(login_url='accounts:login')
 def videos_por_cursos(request, id):
 
+    videos_assistidos = WatchedVideo.objects.filter(user=request.user, curso=id).values('title')
+
     duration = 0
 
     curso = Cursos.objects.filter(id=id)
     videos = Videos.objects.filter(curso=id)
     segundos = Videos.objects.filter(curso=id).values('segundos')
+
+    lista_videos_assistidos = []
+
+    for i in range(videos_assistidos.count()):
+        lista_videos_assistidos.append(videos_assistidos[i]['title'])
 
     for i in range(videos.count()):
         duration += segundos[i]['segundos']
@@ -62,6 +71,7 @@ def videos_por_cursos(request, id):
         'horas': int(calc_horas),
         'minutos': int(calc_minutos),
         'segundos': math.ceil(calc_segundos),
-        'qtd_videos': videos.count()
+        'qtd_videos': videos.count(),
+        'videos_assistidos': lista_videos_assistidos
     }
     return render(request, template_name, context)

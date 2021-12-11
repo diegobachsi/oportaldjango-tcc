@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load my_tags %}
+
 {% block title %}Lista de Tarefas{% endblock %}
 
 {% block content %}
@@ -119,7 +121,7 @@
                         <a href="{{ video.slug }}">
                             <p><b>Vídeo:</b> {{ video.title }}</p>
                             <p><b>Curso:</b> {{ video.curso }}</p>
-                            <p><b>Duração:</b> {{ video.segundos }}s</p>
+                            <p><b>Duração:</b> {{ video.segundos|minutos }}min</p>
                             {% for curso in cursos %}
                                 {% if video.curso.id == curso.id %}
                                     <i id="icon_cursos" class="{{ curso.description }}"></i>
