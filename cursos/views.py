@@ -51,26 +51,12 @@ def videos_por_cursos(request, id):
 
     for i in range(videos.count()):
         duration += segundos[i]['segundos']
-
-    if duration >= 3600:
-        fracao_minutos = (duration / 3600) - int(duration / 3600)
-        calc_horas = duration / 3600
-        calc_minutos = int(fracao_minutos * 60)
-        fracao_segundos = calc_minutos - int(calc_minutos)
-        calc_segundos = fracao_segundos * 60
-    else:
-        calc_horas = 00
-        fracao_segundos = (duration / 60) - int(duration / 60)
-        calc_minutos = duration / 60
-        calc_segundos = fracao_segundos * 60
     
     template_name = 'videos_por_cursos.html'
     context = {
         'videos': videos,
         'cursos': curso,
-        'horas': int(calc_horas),
-        'minutos': int(calc_minutos),
-        'segundos': math.ceil(calc_segundos),
+        'duration': duration,
         'qtd_videos': videos.count(),
         'videos_assistidos': lista_videos_assistidos
     }

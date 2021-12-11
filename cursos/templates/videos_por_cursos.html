@@ -134,15 +134,7 @@
                 <ul id="detalhes">
                     <li><i class="fas fa-video"></i> Curso: <b>{{ curso.title }}</b></li>
                     <li><i class="fas fa-th-list"></i> Qtd. Vídeos: <b>{{ qtd_videos }}</b></li>
-                    {% if minutos < 10 and segundos < 10 %}
-                        <li><i class="fas fa-clock"></i> Duração: <b>0{{ horas }}:0{{ minutos }}:0{{ segundos }}</b></li>
-                    {% elif minutos < 10 %}
-                        <li><i class="fas fa-clock"></i> Duração: <b>0{{ horas }}:0{{ minutos }}:{{ segundos }}</b></li>
-                    {% elif segundos < 10 %}
-                        <li><i class="fas fa-clock"></i> Duração: <b>0{{ horas }}:{{ minutos }}:0{{ segundos }}</b></li>
-                    {% else %}
-                        <li><i class="fas fa-clock"></i> Duração: <b>0{{ horas }}:{{ minutos }}:{{ segundos }}</b></li>
-                    {% endif %}
+                    <li><i class="fas fa-clock"></i> Duração: <b>{{ duration|horas }}:{{ duration|minutos }}:{{ duration|segundos }}</b></li>
                     <li><i class="fas fa-history"></i> Atualizado em: <b>{{ curso.created_at }}</b></li>
                 </ul>
             {% endfor %}

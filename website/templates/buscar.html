@@ -121,7 +121,7 @@
                         <a href="{{ video.slug }}">
                             <p><b>Vídeo:</b> {{ video.title }}</p>
                             <p><b>Curso:</b> {{ video.curso }}</p>
-                            <p><b>Duração:</b> {{ video.segundos|minutos }}min</p>
+                            <p><b>Duração:</b> {{ video.segundos|minutos }}:{{ video.segundos|segundos }}</p>
                             {% for curso in cursos %}
                                 {% if video.curso.id == curso.id %}
                                     <i id="icon_cursos" class="{{ curso.description }}"></i>

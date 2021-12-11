@@ -10,9 +10,8 @@
 
     <style>
 
-    .painel-2 a{
-        font-size: 14px;
-        background-color:#a9eeb2;
+#menu_videos, #menu_videos_assistidos{
+        background-color: #ddd;
         display: block;
         text-decoration: none;
         color: #073f2c;
@@ -20,11 +19,22 @@
         border: 1px solid #aaa;
         border-radius: 5px;
         margin: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
     }
 
-    .painel-2 a:hover {
+    #menu_videos:hover{
         color: #368d42;
         background-color: #eee;
+    }
+
+    #menu_videos_assistidos:hover{
+        color: rgb(1, 51, 1);
+        background-color: #c3ecc9;
+    }
+
+    #menu_videos_assistidos{
+        background-color:#a9eeb2;
     }
 
     .painel-1{
@@ -88,8 +98,12 @@
                 
             {% for curso in cursos %}
             <p id="title_curso">Curso: {{ curso.title }}</p>
-                {% for video in videos %}
-                    <a id="menu_videos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
+                {% for item in videos %}
+                    {% if item.title in videos_assistidos or item.title == video.title %}
+                        <a id="menu_videos_assistidos" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }} <i class="fas fa-check-double"></i></a>
+                    {% else %}
+                        <a id="menu_videos" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }}</a>
+                    {% endif %}
                 {% endfor %}
             {% endfor %}
                 
