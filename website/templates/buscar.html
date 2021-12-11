@@ -167,7 +167,7 @@
                                         </p>
                                     {% else %}
                                         <p id="progresso">
-                                            <b>Progresso: {{ item.progresso }}%</b>
+                                            <b>Progresso: {{ item.progresso|duas_casas_decimais }}%</b>
                                         </p>
                                     {% endif %}
                                 {% endif %}

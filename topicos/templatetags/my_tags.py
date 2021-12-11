@@ -5,7 +5,6 @@ register = template.Library()
 
 @register.filter
 def horas(segundos):
-
     if segundos >= 3600:
         hora = int(segundos/3600)
     else:
@@ -19,7 +18,6 @@ def horas(segundos):
 
 @register.filter
 def minutos(segundos):
-
     if segundos >= 3600:
         min = int((segundos/3600 - int(segundos/3600)) * 60)
     else:
@@ -33,7 +31,6 @@ def minutos(segundos):
 
 @register.filter
 def segundos(segundos):
-
     if segundos >= 3600:
         min = (segundos/3600 - int(segundos/3600)) * 60
         seg = (min - int(min)) * 60
@@ -49,3 +46,6 @@ def segundos(segundos):
         return seg
 
 
+@register.filter
+def duas_casas_decimais(num):
+    return round(num, 2)

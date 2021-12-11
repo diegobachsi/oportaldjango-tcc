@@ -2,6 +2,8 @@
 
 {% load static %}
 
+{% load my_tags %}
+
 {% block title %}Lista de Tarefas{% endblock %}
 
 {% block content %}
@@ -185,7 +187,7 @@
 							<a href="{% url 'cursos:video_por_cursos' curso.id %}">
 								<i id="icon_cursos" class="{{ curso.description }}"></i>
 								{{ curso.title }}</br></br>
-								{{ item.progresso }}%</br>
+								{{ item.progresso|duas_casas_decimais }}%</br>
 								<progress id="file" value="{% widthratio item.progresso 1 1 %}" max="100"></progress>
 							</a>
 						{% endif %}
