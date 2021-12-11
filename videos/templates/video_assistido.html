@@ -37,6 +37,28 @@
         background-color:#a9eeb2;
     }
 
+    .pagination {
+        margin: 20px;
+        display: inline-block;
+        font-size: 20px;
+        color: #aaa;
+    }
+
+    .pagination a{
+        display: inline-block;
+        border: 0;
+        background-color: rgb(248, 248, 248);
+    }
+
+    .pagination a:hover{
+        background-color: #eee;
+    }
+
+    .pagination i{
+        padding: 5px;
+        font-size: 20px;
+    }
+
     .painel-1{
         text-align: center;
         font-size: 100px;
@@ -99,12 +121,29 @@
             {% for curso in cursos %}
             <p id="title_curso">Curso: {{ curso.title }}</p>
                 {% for item in videos %}
-                    {% if item.title in videos_assistidos or item.title == video.title %}
-                        <a id="menu_videos_assistidos" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }} <i class="fas fa-check-double"></i></a>
-                    {% else %}
-                        <a id="menu_videos" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }}</a>
+                    {% if forloop.counter <= 4 %}
+                        {% if item.title in videos_assistidos or item.title == video.title %}
+                            <a id="menu_videos_assistidos" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }} <i class="fas fa-check-double"></i></a>
+                        {% else %}
+                            <a id="menu_videos" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }}</a>
+                        {% endif %}
                     {% endif %}
                 {% endfor %}
+                <div class="pagination">
+			        {% if videos.has_previous %}
+		                <a href="?page={{ videos.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+		            {% endif %}
+		            
+		            {% if videos.paginator.num_pages %}
+			            <span style="font-size: 20px;">
+			                {{ videos.number }} - {{ videos.paginator.num_pages }}
+			            </span>
+		            {% endif %}
+		        
+		            {% if videos.has_next %}
+		                <a href="?page={{ videos.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+		            {% endif %}
+	        	</div>
             {% endfor %}
                 
             </div><!-- fim painel-2 -->

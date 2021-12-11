@@ -55,7 +55,7 @@ def videos_por_cursos(request, id):
         duration += segundos[i]['segundos']
 
     count = videos.count()
-    paginator = Paginator(videos, 5)
+    paginator = Paginator(videos, 4)
     page = request.GET.get('page')
     videos = paginator.get_page(page)
     

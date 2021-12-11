@@ -141,7 +141,7 @@
             {% for curso in cursos %}
             <p id="title_curso">Curso: {{ curso.title }}</p>
                 {% for video in videos %}
-                    {% if forloop.counter <= 5 %}
+                    {% if forloop.counter <= 4 %}
                         {% if video.title in videos_assistidos %}
                             <a id="menu_videos_assistidos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }} <i class="fas fa-check-double"></i></a>
                         {% else %}

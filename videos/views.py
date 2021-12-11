@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render
 
 from .models import Videos, WatchedVideo
@@ -27,11 +28,17 @@ def details(request, id, slug):
     for i in range(videos_assistidos.count()):
         lista_videos_assistidos.append(videos_assistidos[i]['title'])
 
+    count = videos.count()
+    paginator = Paginator(videos, 4)
+    page = request.GET.get('page')
+    videos = paginator.get_page(page)
+
     context = {
         'video': video,
         'videos': videos,
         'cursos': curso,
-        'videos_assistidos': lista_videos_assistidos
+        'videos_assistidos': lista_videos_assistidos,
+        'count': count
     }
     template_name = 'details_videos.html'
     return render(request, template_name, context)
@@ -49,11 +56,17 @@ def video_assistido(request, id, title):
     for i in range(videos_assistidos.count()):
         lista_videos_assistidos.append(videos_assistidos[i]['title'])
 
+    count = videos.count()
+    paginator = Paginator(videos, 4)
+    page = request.GET.get('page')
+    videos = paginator.get_page(page)
+
     context = {
         'video': video,
         'videos': videos,
         'cursos': cursos,
-        'videos_assistidos': lista_videos_assistidos
+        'videos_assistidos': lista_videos_assistidos,
+        'count': count
     }
 
     verifica_video_assistido = WatchedVideo.objects.filter(user=request.user, title=video) #realiza consulta no bd para ver se o user current já assistiu o video em questão
