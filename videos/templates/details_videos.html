@@ -14,7 +14,7 @@
         padding-bottom: 10px;
     }
 
-    #menu_videos, #menu_videos_assistidos{
+    #menu_videos, #menu_videos_assistidos, #menu_videos_assistindo{
         background-color: #ddd;
         display: block;
         text-decoration: none;
@@ -27,6 +27,15 @@
         font-size: 16px;
     }
 
+    #menu_videos_assistidos{
+        background-color:#a9eeb2;
+    }
+
+    #menu_videos_assistindo{
+        color: rgb(34, 37, 189);
+        border: 1px solid rgb(34, 37, 189);
+    }
+
     #menu_videos:hover{
         color: #368d42;
         background-color: #eee;
@@ -37,8 +46,9 @@
         background-color: #c3ecc9;
     }
 
-    #menu_videos_assistidos{
-        background-color:#a9eeb2;
+    #menu_videos_assistindo:hover{
+        color: rgb(34, 37, 189);
+        background-color: #c3ecc9;
     }
 
     .pagination {
@@ -108,12 +118,14 @@
             
           {% for curso in cursos %}
           <p id="title_curso">Curso: {{ curso.title }}</p>
-            {% for video in videos %}
+            {% for item in videos %}
               {% if forloop.counter <= 4 %}
-                {% if video.title in videos_assistidos %}
-                    <a id="menu_videos_assistidos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }} <i class="fas fa-check-double"></i></a>
+                {% if item.title in videos_assistidos %}
+                    <a id="menu_videos_assistidos" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }} <i class="fas fa-check-double"></i></a>
+                {% elif item.id == video.id %}
+                    <a id="menu_videos_assistindo" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }} <i class="fas fa-hourglass-start"></i></a>
                 {% else %}
-                    <a id="menu_videos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
+                    <a id="menu_videos" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }}</a>
                 {% endif %}
               {% endif %}
             {% endfor %}
