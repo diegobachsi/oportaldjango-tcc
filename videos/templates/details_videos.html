@@ -121,14 +121,15 @@
             {% for item in videos %}
               {% if forloop.counter <= 4 %}
                 {% if item.title in videos_assistidos %}
-                    <a id="menu_videos_assistidos" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }} <i class="fas fa-check-double"></i></a>
+                    <a id="menu_videos_assistidos" href="{% url 'videos:details' curso.id item.slug %}?page={{ videos.number }}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }} <i class="fas fa-check-double"></i></a>
                 {% elif item.id == video.id %}
-                    <a id="menu_videos_assistindo" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }} <i class="fas fa-hourglass-start"></i></a>
+                    <a id="menu_videos_assistindo" href="{% url 'videos:details' curso.id item.slug %}?page={{ videos.number }}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }} <i class="fas fa-hourglass-start"></i></a>
                 {% else %}
-                    <a id="menu_videos" href="{% url 'videos:details' curso.id item.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }}</a>
+                    <a id="menu_videos" href="{% url 'videos:details' curso.id item.slug %}?page={{ videos.number }}"><i id="icon_video" class="far fa-play-circle"></i> {{ item.title }}</a>
                 {% endif %}
               {% endif %}
             {% endfor %}
+            
             <div class="pagination">
 			        {% if videos.has_previous %}
 		                <a href="?page={{ videos.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
@@ -180,7 +181,7 @@
                   'onStateChange': function(event){
                     if (event.data == 0) {
 
-                      window.location.href = "{{ video.title }}";
+                      window.location.href = "{{ video.title }}?page={{ videos.number }}";
                       
                     }
                   }

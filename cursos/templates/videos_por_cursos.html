@@ -147,9 +147,9 @@
                 {% for video in videos %}
                     {% if forloop.counter <= 4 %}
                         {% if video.title in videos_assistidos %}
-                            <a id="menu_videos_assistidos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }} <i class="fas fa-check-double"></i></a>
+                            <a id="menu_videos_assistidos" href="{% url 'videos:details' curso.id video.slug %}?page={{ videos.number }}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }} <i class="fas fa-check-double"></i></a>
                         {% else %}
-                            <a id="menu_videos" href="{% url 'videos:details' curso.id video.slug %}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
+                            <a id="menu_videos" href="{% url 'videos:details' curso.id video.slug %}?page={{ videos.number }}"><i id="icon_video" class="far fa-play-circle"></i> {{ video.title }}</a>
                         {% endif %}
                     {% endif %}
                 {% endfor %}
