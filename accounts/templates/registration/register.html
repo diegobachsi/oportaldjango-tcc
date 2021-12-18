@@ -7,192 +7,59 @@
 
 {% block content %}
 
-    <style>
+<style>
 
-        html, body{
-            height: 100%;
-            overflow: visible;
-        }
-
-        .painel-2{
-            margin-bottom: 100px;
-        }
-
-        .alertSucess {
-            font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #000;
-            background-color: #d2ffdd;
-            margin: 0 auto;
-            width: 100%;
-            text-align: left;
-        }
-
-        .alertSucess i{
-            font-size: 15px;
-            padding: 15px;
-            padding-right: 5px;
-        }
-
-        .alertError {
-            font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #000;
-            background-color: #fc7f60;
-            margin: 0 auto;
-            width: 100%;
-            text-align: left;
-            border-top: 8px solid #073f2c;
-        }
-
-        .alertError i{
-            font-size: 15px;
-            padding: 15px;
-            padding-right: 5px;
-        }
-
-        .alertUser, .alertEmail, .alertPassword, .alertCadastro{
-            font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #000;
-            background-color: #d2ffdd;
-            margin: 0 auto;
-            width: 100%;
-            text-align: left;
-        }
-
-        .alertCadastro{
-            border-top: 8px solid #073f2c;
-        }
-
-        .alertUser, .alertEmail, .alertPassword{
-            font-size: 13px;
-        }
-
-        .alertUser i, .alertEmail i, .alertPassword i{
-            font-size: 13px;
-            padding: 15px;
-            padding-right: 5px;
-        }
-        
-        .alertCadastro i{
-            font-size: 15px;
-            padding: 15px;
-            padding-right: 5px;
-        } 
-
-        .dadosCadastro{
-            font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #000;
-            padding: 0;
-            margin: 10% auto;
-            width: 70%;
+        .msg_erro_padrao{
+            margin-bottom: 10px;
             text-align: center;
-        }
-
-        .dadosCadastro i{
-            padding: 15px;
-            font-size: 40px;
-            color: #08f142;
-        }
-
-        .dadosCadastro a{
-            text-decoration: none;
-            color: rgb(2, 98, 223);
-        }
-
-        .dadosCadastro a:hover{
-            text-decoration: none;
-            color: rgb(45, 163, 184);
-        }
-
-        .corrigeDisplay{
-            display: inline-block;
+            color: rgb(220, 223, 37);
             
         }
 
-        .corrigeDisplay ul{
-            list-style-type: none;
+        .msg_erros{
+            display: inline-block;
+            font-size: 12px;
+            padding: 0;
+            text-align: left;
+            
         }
 
-        @media screen and (max-width: 500px) {
-
-            .alertUser, .alertEmail, .alertPassword {
-                font-size: 10px;
-            }
-
-            .alertUser i, .alertEmail i, .alertPassword i{
-                font-size: 10px;
-            }
-
-            .container{
-                margin-top: 20px;
-            }
-
-            .alertCadastro{
-                font-size: 10px;
-            }
-
-            .header p{
-                font-size: 25px;   
-            }
-
-            form{
-                width: 70%;
-                margin: 0 auto;
-                padding:0;
-            }
-
-            .links{
-                font-size: 11px;
-                text-align: center;;
-            }
-
+        .msg_erros ul{
+            list-style-type: square;
         }
 
-    </style>
+        .link-item{
+            padding-top: 30px;
+        }
+
+</style>
+
+<div class="box-form">
 
     {% if form.errors %}
-        <div class="alertError">
-            <i class="fas fa-exclamation-circle"></i>
-            Não foi possível realizar o cadastro! 
+        <div class="msg_erro_padrao">
+            Não foi possível realizar o cadastro:
         </div>
-        <div class="alertUser">
+        <div class="msg_erros">
             {% if form.username.errors %}
-                <i class="fas fa-user"></i>
-                <div class="corrigeDisplay">
-                    {{ form.username.errors }}
-                </div>
+                {{ form.username.errors }}
             {% endif %}
         </div>
-        <div class="alertEmail">
+        <div class="msg_erros">
             {% if form.email.errors %}     
-                <i class="fas fa-envelope"></i>
-                <div class="corrigeDisplay"> 
-                    {{ form.email.errors }}
-                </div>
+               {{ form.email.errors }}
             {% endif %}
         </div>
-        <div class="alertPassword">
+        <div class="msg_erros">
             {% if form.password2.errors %}
-                <i class="fas fa-key"></i>
-                <div class="corrigeDisplay"> 
-                    {{ form.password2.errors }}
-                </div>
+                {{ form.password2.errors }}
             {% endif %}
         </div>
-    {% else %}
-        <div class="alertCadastro">
-            <i class="fas fa-edit"></i>
-            Preencha os campos para realizar o cadastro!
-        </div>
+
     {% endif %}
 
-    <div class="container">  
-        <div class="painel-2">
-            <form action="{% url 'accounts:register' %}" method="post">
-                {% csrf_token %}
+            <form class="px-4 py-3" action="{% url 'accounts:register' %}" method="post">
+            {% csrf_token %}
                         
                     <div>{{ form.username }}</div>
                     <div>{{ form.first_name }}</div>
@@ -200,11 +67,12 @@
                     <div>{{ form.email }}</div>
                     <div>{{ form.password1 }}</div>
                     <div>{{ form.password2 }}</div>
-        
-                    <div><input type="submit" name="acao" value="Cadastrar" /></div>
-                    <div class="links"><i class="fas fa-sign-in-alt"></i><a href="/">Ir para Login</a></div> 
+
+                    <button type="submit" class="btn btn-success">Cadastrar</button>
+
+                    <a class="link-item" href="/"><i class="fas fa-sign-in-alt"></i> Ir para Login</a>
             </form>
-        </div>
-    </div>
+   
+</div>
 
 {% endblock %}

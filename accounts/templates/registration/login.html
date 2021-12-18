@@ -7,124 +7,47 @@
 
 {% block content %}
 
-    <style>
-
-        html, body{
-            height: 100%;
-            overflow: visible;
-        }
-
-        .painel-2{
-            margin-bottom: 300px;
-        }
-
-        .alertError {
-            font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #fff;
-            margin: 0 auto;
-            width: 100%;
-            text-align: left;
-            background-color: #fc5246;  
-        }
-
-        .alertError i{
-            font-size: 15px;
-            padding: 15px;
-            padding-right: 5px;
-        }
-
-        .alertAuth {
-            font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #000;
-            margin: 0 auto;
-            width: 100%;
-            text-align: left;
-            background-color: #d2ffdd;
-            border-top: 8px solid #073f2c;
-        }
-
-        .alertAuth i{
-            font-size: 15px;
-            padding: 15px;
-            padding-right: 5px;
-        }
-
-        @media screen and (max-width: 500px) {
-
-            .container{
-                margin-top: 20px;
-            }
-
-            .alertAuth{
-                font-size: 10px;
-            }
-
-            .header p{
-                font-size: 25px;   
-            }
-
-            form{
-                width: 70%;
-                margin: 0 auto;
-                padding:0;
-            }
-
-            .links{
-                font-size: 11px;
-                text-align: center;
-            }
-
-        }
-
-    </style>
-
+<div class="box-form">
+                   
     {% if form.errors %}
-        <div class="alertError">
-            <i class="fas fa-exclamation-circle"></i>
+        
+        <div class="msg_erros">
             Usuário não existe/inativo ou senha incorreta.
         </div>
+
     {% endif %}
 
     {% if next %}
         {% if user.is_authenticated %}
-            <div class="alertAuth">
-                <i class="fas fa-exclamation-circle"></i>
-                <p>Sua conta não tem acesso a esta página. Para prosseguir,
+
+            <div class="msg_erros">
+                <span>Sua conta não tem acesso a esta página. Para prosseguir,
                     por favor faça login com uma conta que tenha acesso.
-                </p>
+                </span>
             </div>
-        {% else %}
-            <div class="alertAuth">
-                <i class="fas fa-exclamation-circle"></i>
-                Por favor, faça o login para acessar a página.
-            </div>
+    
         {% endif %}
     {% endif %}
 
-    <div class="container">
-
-        <div class="painel-2">
-       
-            <form action="{% url 'accounts:login' %}" method="post">
-            {% csrf_token %}   
-            
-                <div>{{ form.username }}</div>
-                <div>{{ form.password }}</div>
-
-                <div>
-                    <input type="submit" name="acao" value="Entrar">
-                    <input type="hidden" name="next" value="{{ next }}" />
-                </div>
-                
-                <div class="links">
-                    <i class="fas fa-smile"></i><a href="{% url 'accounts:register' %}">Novo aqui?</a>  <i class="fas fa-lock"></i><a href="/password_reset/">Esqueceu a senha?</a>
-                </div>
-            </form>
-
+    <form class="px-4 py-3" action="{% url 'accounts:login' %}" method="post">
+    {% csrf_token %}   
+   
+        <div class="form-group">
+            {{ form.username }}
         </div>
-        
-    </div>
+
+        <div class="form-group">
+            {{ form.password }}
+        </div>
+
+       <button type="submit" class="btn btn-success">Entrar</button>
+       <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+
+   <a class="link-item" href="{% url 'accounts:register' %}"><i class="fas fa-smile"></i> Novo aqui? Cadastre!</a>
+   <a class="link-item" href="/password_reset/"><i class="fas fa-lock"></i> Esqueceu sua senha?</a>
+</div>
+       
 
 {% endblock %}
+

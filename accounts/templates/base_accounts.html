@@ -8,18 +8,190 @@
     <meta name="description" content="Portal DJANGO - Portal com conteúdo do Framework Django-Python" />
     <title>O Portal Django</title>
     <link rel="icon" type="image/jpg" href="{% static 'images/logo-django.png' %}" />
-    <link rel="stylesheet" href="{% static 'css/auth2.css' %}"/>
+   
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+<style>
+
+    body{
+        padding: 0;
+        margin: 0;
+        background-color: #063d2d;
+    }
+
+    .box-form{
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    form{
+        margin: 0 auto;
+    }
+
+    .btn-success{
+        margin-top: 25px;
+        width: 100%;
+    }
+
+    .link-item{
+        display: block;
+        width: 70%;
+        text-align: center;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 0;
+        margin: 0 auto;
+    }
+
+    .link-item:hover{
+        color: #3CB371;
+        background: #063d2d;
+    }
+
+    .msg_erros{
+        color: rgb(220, 223, 37) !important;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .divisao{
+        display: grid;
+        grid-template-columns: 65% 35%;
+    }
+
+    .left-tela{
+        text-align: center;
+        color: #fff;
+        font-size: 30px;
+    }
+
+    .right-tela{
+        padding-top: 100px;
+    }
+
+    img {
+        padding-top: 150px;
+        width: 70%;
+    }
+
+    input{
+        margin-top: 25px;
+        display:block;
+        width:100%;
+        padding:.375rem .75rem;
+        font-size:1rem;
+        font-weight:400;
+        line-height:1.5;
+        color:#212529;
+        background-color:#fff;
+        background-clip:padding-box;
+        border:1px solid #ced4da;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        appearance:none;
+        border-radius:.25rem;
+        transition:border-color .15s ease-in-out,
+        box-shadow .15s ease-in-out;
+        border: 1px solid rgba(0,128,0, 0.5);
+    }
+
+    a:focus{
+        outline: 0;
+    }
+
+    input:focus{
+        border-color: rgb(0,128,0, 0.7);
+        outline: 0;
+        box-shadow: 0 0 5px #fff, 0 0 8px rgba(126, 239, 104, 0.6) !important;
+    }
+
+    #msg_logo{
+        position: absolute;
+        padding-top: 100px;
+        font-size: 65px;
+        font-weight: bold;
+    }
+
+    #msg_logo > i{
+       font-weight: normal;
+       font-size: 80px;
+    }
+
+    .msg{
+        font-size: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #fff;
+        padding: 0;
+        margin: 0 auto;
+        width: 80%;
+        text-align: center;
+    }
+
+    .msg i{
+        padding: 15px;
+        font-size: 60px;
+    }
+
+    .msg a{
+        text-decoration: none;
+        color: #071696;
+        padding: 3px;
+        border: 1px solid #071696;
+    }
+
+    .msg #link{
+        padding: 20px;
+    }
+
+    .msg a:hover{
+        text-decoration: none;
+        color: #1d98c9;
+        border: 1px solid #1d98c9;
+    }
+
+    @media screen and (max-width: 1000px) {
+        .divisao{
+            grid-template-columns: 100%;
+        }
+
+        .right-tela{
+            padding: 0;
+        }
+
+        .navbar{
+            display: none;
+        }
+
+        img{
+            padding-top: 50px;
+        }
+
+        #msg_logo{
+            padding-top: 30px;
+            font-size: 32px;
+        }
+
+        #msg_logo > i{
+            font-size: 40px;
+        }
+    }
+
+</style>
 
 </head>
 
 <body>
-
-    <div class="header">
-            <p><img src="{% static 'images/logo-django.png' %}" /> Portal Django</p>
+    <div class="divisao">
+        <div class="left-tela">
+           <span id="msg_logo"><i class="fab fa-python"></i> Portal </span>
+            <img src="{% static 'images/logo-django2.png' %}" />
+        </div>
+        <div class="right-tela">
+            {% block content %}{% endblock %} 
+        </div>
     </div>
-
-    {% block content %}{% endblock %} 
 
 </body>
 

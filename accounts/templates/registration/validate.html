@@ -1,75 +1,28 @@
+{% extends 'base_accounts.html' %}
+
 {% load static %}
 
-<!doctype html>
-<html lang="pt-br">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portal DJANGO - Portal com conteúdo do Framework Django-Python" />
-    <title>O Portal Django</title>
-    <link rel="icon" type="image/jpg" href="{% static 'images/icondj.jpg' %}" />
-    <link rel="stylesheet" href="{% static 'css/auth2.css' %}"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+{% block title %}Register{% endblock %}
 
-    <style>
+{% block content %}
 
-        .alert {
-            font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #000;
-            margin: 0 auto;
-            width: 100%;
-            text-align: left;
-            background-color: #d2ffdd; 
-        }
+<style>
 
-        .alert i{
-            font-size: 15px;
-            padding: 15px;
-            padding-right: 5px;
-        }
+    .msg i{
+        color: #1dca34;
+    }
 
-        .msg{
-            font-size: 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            color: #000;
-            padding: 0;
-            margin: 0 auto;
-            width: 50%;
-            text-align: center;
-        }
+</style>
 
-        .msg i{
-            padding: 15px;
-            font-size: 40px;
-            color: #08f142;
-        }
+<div class="box-form">
 
-
-    </style>
-
-</head>
-
-<body>
-
-    <div class="header">
-        <p><img src="{% static 'images/logo-django.png' %}" /></p>
+    <div class="msg">  
+        <i class="far fa-check-circle"></i> 
+            <p>Parabéns <b>{{ form.first_name.value }} {{ form.last_name.value }},</b></p>
+            <p>Seu cadastro foi finalizado, foi enviado o link de ativação para o <b>e-mail: {{ form.email.value }}.</b></p>
+            <p>Após ativar o cadastro utilize seu usuário<b> {{ form.username.value }}</b> para realizar o login.</p>
     </div>
+    <a class="link-item" href="/"><i class="fas fa-sign-in-alt"></i> Acessar Login</a>
+</div>
 
-    <div class="alert">
-        <i class="fas fa-envelope"></i>
-        Cadastro realizado. Enviado link para ativação da conta.
-    </div>
-
-    <div class="container">
-        <div class="msg">  
-            <i class="far fa-check-circle"></i> 
-                <p>Parabéns <b>{{ form.first_name.value }} {{ form.last_name.value }},</b></p>
-                <p>Seu cadastro foi finalizado, foi enviado o link de ativação para o <b>e-mail: {{ form.email.value }}.</b></p>
-                <p>Após ativar o cadastro utilize seu usuário<b> {{ form.username.value }}</b> para realizar o <a href="/login/"><b>login</b></a>.</p>
-        </div>
-    </div>
-
-</body>
-
-</html>
+{% endblock %}
