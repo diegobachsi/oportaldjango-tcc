@@ -50,6 +50,16 @@
         background: #063d2d;
     }
 
+    .social-container > button{
+        margin: 0 auto;
+        display: block !important;
+    }
+
+    .social-container a{
+        text-decoration: none;
+        color: #fff;
+    }
+
     .msg_erros{
         color: rgb(220, 223, 37) !important;
         font-size: 15px;
@@ -72,8 +82,8 @@
     }
 
     img {
-        padding-top: 150px;
-        width: 70%;
+        padding-top: 120px;
+        width: 50%;
     }
 
     input{
@@ -105,18 +115,6 @@
         border-color: rgb(0,128,0, 0.7);
         outline: 0;
         box-shadow: 0 0 5px #fff, 0 0 8px rgba(126, 239, 104, 0.6) !important;
-    }
-
-    #msg_logo{
-        position: absolute;
-        padding-top: 100px;
-        font-size: 65px;
-        font-weight: bold;
-    }
-
-    #msg_logo > i{
-       font-weight: normal;
-       font-size: 80px;
     }
 
     .msg{
@@ -167,15 +165,6 @@
         img{
             padding-top: 50px;
         }
-
-        #msg_logo{
-            padding-top: 30px;
-            font-size: 32px;
-        }
-
-        #msg_logo > i{
-            font-size: 40px;
-        }
     }
 
 </style>
@@ -185,8 +174,7 @@
 <body>
     <div class="divisao">
         <div class="left-tela">
-           <span id="msg_logo"><i class="fab fa-python"></i> Portal </span>
-            <img src="{% static 'images/logo-django2.png' %}" />
+            <img src="{% static 'images/logo-django.png' %}" />
         </div>
         <div class="right-tela">
             {% block content %}{% endblock %} 
