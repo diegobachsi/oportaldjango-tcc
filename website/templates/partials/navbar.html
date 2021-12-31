@@ -1,8 +1,24 @@
 {% load static %}
+
+<style>
+
+    #notificacao{
+        color: red;
+        font-size: 11px;
+        position: absolute;
+    }
+
+    .dropdown-item:hover{
+        background: none;
+    }
+
+</style>
+
 <div class="header_menu">
     <div class="menu-pc">
         <a href="{% url 'website:index' %}"><i class="fas fa-home"></i> Home </a>
         <a href="{% url 'topicos:index' %}"><i class="fas fa-folder-open"></i> Tópicos </a>
+        <!--<a href="{% url 'cursos:index' %}"><i id="notificacao" class="fas fa-circle"></i><i class="fas fa-video"></i> Cursos </a>-->
         <a href="{% url 'cursos:index' %}"><i class="fas fa-video"></i> Cursos </a>
         <a href="{% url 'website:session_gamer' %}"><i class="fas fa-book"></i> Área Estudos </a> 
         <a href="{% url 'website:contato' %}"><i class="fas fa-envelope"></i> Contatos </a>   
@@ -15,12 +31,21 @@
     </form>
 
     <div class="user_logado">
-        <div class="dropdown">
-            <div class="dropbtn">Olá, {{ user.get_username }}. <i class="fas fa-chevron-circle-down"></i></div>
-            <div class="dropdown-content">
-                <a href="{% url 'website:config' %}"><i class="fas fa-cog"></i> Configurações </a>
-                <a href="{% url 'accounts:logout' %}"><i class="fas fa-times-circle"></i> Sair</a>
-            </div>
+        <!-- dropdown -->
+        <div class="btn-group">
+            <button type="button" class="btn btn-success btn-dropdown dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                {% if user.get_username|length > 15 %}
+                    Olá, {{ user.get_username|truncatechars:15 }}
+                {% else %}
+                    Olá, {{ user.get_username }}
+                {% endif %}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'website:config' %}"><i class="fas fa-cog"></i> Configurações </a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'accounts:logout' %}"><i class="fas fa-times-circle"></i> Sair</a></li>
+            </ul>
         </div>
+        
     </div>
 </div>

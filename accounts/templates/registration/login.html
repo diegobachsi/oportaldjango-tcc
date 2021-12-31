@@ -42,8 +42,21 @@
 
        <button type="submit" class="btn btn-success">Entrar</button>
        <input type="hidden" name="next" value="{{ next }}" />
+
+       
     </form>
 
+    <div class="social-container">
+
+        <button class="btn btn-danger mb-2">
+            <a href="{% url 'social:begin' 'google-oauth2' %}"><i class="fab fa-google"></i> Logar com o Google</a>
+        </button>
+        <button class="btn btn-primary mb-2">
+            <a href="{% url 'social:begin' 'facebook' %}"><i class="fab fa-facebook-square"></i> Logar com Facebook
+            </a>
+        </button>
+
+    </div>
    <a class="link-item" href="{% url 'accounts:register' %}"><i class="fas fa-smile"></i> Novo aqui? Cadastre!</a>
    <a class="link-item" href="/password_reset/"><i class="fas fa-lock"></i> Esqueceu sua senha?</a>
 </div>
