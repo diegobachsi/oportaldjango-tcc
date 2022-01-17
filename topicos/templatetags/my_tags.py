@@ -49,3 +49,23 @@ def segundos(segundos):
 @register.filter
 def duas_casas_decimais(num):
     return round(num, 2)
+
+@register.filter
+def nome_curso(num):
+    if num == '4':
+        return 'Introdução a HTML'
+    elif num == '14':
+        return 'Introdução a CSS'
+    elif num == '24':
+        return 'Introdução a JavaScript'
+    elif num == '34':
+        return 'Introdução a Python'
+    elif num == '44':
+        return 'Curso de Django'
+    else:
+        return 'Git/Github para iniciantes'
+
+@register.filter
+def str_to_int(nome):
+
+    return int(nome)

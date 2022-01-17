@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'accounts',
     'videos',
     'cursos',
+    'forum',
 ]
 
 MIDDLEWARE = [

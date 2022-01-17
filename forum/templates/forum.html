@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load my_tags %}
+
+{% block title %}Fórum{% endblock %}
+
+{% block content %}
+
+   
+    <style>
+
+    .container{
+		display: grid;
+		grid-template-columns: 100%;
+	}
+
+    .painel-1{
+        text-align: center;
+    }
+
+    .form-forum{
+        width: 100% !important;
+        font-family: 'Pragati Narrow', sans-serif !important;
+        font-size: 15px;
+    }
+
+    textarea:focus{
+        outline: 0 !important;
+    }
+
+    .painel-forum{
+        display: grid;
+		grid-template-columns: 100%;
+        background: #cde0f8;
+        text-align: left;
+        border-radius: 10px;
+        border: 1px solid rgb(155, 152, 152);
+        margin-bottom: 10px;
+    }
+
+    .painel-forum p{
+        padding: 0;
+        margin: 0;
+    }
+
+    .painel-forum-top{
+        display: grid;
+		grid-template-columns: 80% 20%;
+        padding: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(155, 152, 152);
+    }
+
+    .painel-forum-top-title{
+        margin-right: 10px;
+    }
+
+    .painel-forum-top-icones{
+        align-items: center;
+        display: flex;
+        justify-content: right;
+    }
+
+    .painel-forum-top p{
+        font-weight: bold;
+    }
+
+    .painel-forum-top span{
+        font-size: 12px;
+        color: rgb(43, 43, 138);
+    }
+
+    .painel-forum-top i{
+        font-size: 20px;
+        float: right;
+        margin-right: 7px;
+    }
+
+    .fa-trash{
+        color: rgb(197, 38, 17);
+    }
+
+    .fa-trash:hover{
+        color: rgb(221, 153, 144);
+    }
+
+    .fa-edit{
+        color: rgb(165, 92, 8);
+    }
+
+    .fa-edit:hover{
+        color: rgb(229, 189, 143);
+    }
+
+    .fa-comment-alt:hover{
+        color: cadetblue;
+    }
+
+    .painel-forum-bottom{
+        padding: 20px;
+    }
+
+    .painel-forum-bottom p{
+        font-size: 15px;
+    }
+
+    select{
+        background: #fff !important;
+        width: 80% !important;
+    }
+
+    .btn-cadastrar{
+        margin-top: 30px;
+    }
+
+    .painel-forum-answer{
+        background: #eee;
+        padding: 10px 20px;
+        margin: 20px;
+        margin-top: 10px;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+
+    .painel-forum-answer p{
+        font-size: 15px;
+    }
+
+    .painel-forum-answer span{
+        font-size: 12px;
+        color: rgb(43, 43, 138);
+    }
+
+	@media screen and (max-width: 1000px) {
+
+        .painel-1{
+            font-size: 50px;
+        }
+
+        form{
+            font-size: 15px;
+        }
+
+        .painel-forum-top{
+            font-size: 15px;
+        }
+    
+	}
+
+    </style>
+
+    <div class="alert">
+        <i class="fas fa-folder-open"></i>
+        Área Fórum
+    </div>
+
+    <div class="container">
+	    
+    	<div class="painel-1">
+
+           
+                {% for item in forum %}
+
+                <div class="painel-forum">
+
+                    <div class="painel-forum-top">
+
+                        <div class="painel-forum-top-title">
+                            <p>{{ item.title }}</p>
+                            <span><b>{{ item.user }}</b> | {{ item.curso|nome_curso }} | {{ item.created_at|date:"d M Y - H:i:s" }}</span>
+                        </div>
+
+                        <div class="painel-forum-top-icones">
+                            {% if item.user == user.get_username %}
+                                <a href="{% url 'forum:delete' item.id %}" onclick="return confirm('Realmente deseja Deletar?')"> <i class="fas fa-trash"></i></a>
+                                <a href="{% url 'forum:edit' item.id %}"> <i class="fas fa-edit"></i></a>
+                                <a href="{% url 'forum:comment' item.id %}#answer"> <i class="fas fa-comment-alt"></i></a>
+                            {% else %}
+                                <a href="{% url 'forum:comment' item.id %}#answer"> <i class="fas fa-comment-alt"></i></a>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+
+                    <div class="painel-forum-bottom">
+                        <p>{{ item.content }}</p>
+                    </div>
+
+                        {% for i in answer %}
+                            {% if item.id == i.id_topico_forum|str_to_int %}
+                            <div class="painel-forum-answer">
+                                <hr> 
+                                <i class="fas fa-level-down-alt"></i> 
+                                <span><b>{{ i.user }}</b> | </span>
+                                <span>{{ i.created_at|date:"d M Y - H:i:s" }}</span>
+                                <span>
+                                    {% if i.user == user.get_username %}
+                                        <a href="{% url 'forum:delete_answer' i.id %}" onclick="return confirm('Realmente deseja Deletar?')"> <i class="fas fa-trash"></i></a>
+                                        <a href="{% url 'forum:edit_answer' i.id %}"> <i class="fas fa-edit"></i></a>
+                                    {% endif %}
+                                </span>
+                                <p>{{ i.answer }}</p>
+                                <hr>
+                            </div>     
+                            {% endif %}
+                        {% endfor %}
+                    
+                    
+
+                    {% if item.id == is_comment_id %}
+                        <form action="{% url 'forum:answer' item.id %}" method="post">
+                            {% csrf_token %}
+                            <div id="answer">
+                                {{ form.answer }}
+                            </div>
+                            
+                            <div class="btn-cadastrar">
+                                <button type="submit" class="btn btn-primary">Responder</button>
+                            </div>
+                        </form>
+                    {% endif %}
+        
+                </div>
+
+                {% endfor %}
+            
+            
+            <form action="{% url 'forum:index' %}" method="post">
+			{% csrf_token %}
+           
+                Novo Tópico <i class="fas fa-plus"></i>
+                
+                <div>
+                    {{ form.curso }}
+                    {{ form.title }}
+                    {{ form.content }}
+                    {{ form.erros }}
+                </div>
+               
+
+                <div class="btn-cadastrar">
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </div>
+
+            </form>
+
+    	</div><!-- fim painel-1 -->
+		
+    </div>
+    
+
+{% endblock %}

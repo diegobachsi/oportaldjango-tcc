@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load my_tags %}
+
+{% block title %}Fórum{% endblock %}
+
+{% block content %}
+
+   
+    <style>
+
+    .container{
+		display: grid;
+		grid-template-columns: 100%;
+	}
+
+    .painel-1{
+        text-align: center;
+    }
+
+    .form-forum{
+        width: 100% !important;
+        font-family: 'Pragati Narrow', sans-serif !important;
+        font-size: 15px;
+    }
+
+    textarea:focus{
+        outline: 0 !important;
+    }
+
+    .painel-forum{
+        display: grid;
+		grid-template-columns: 100%;
+        background: #cde0f8;
+        text-align: left;
+        border-radius: 10px;
+        border: 1px solid rgb(155, 152, 152);
+        margin-bottom: 10px;
+    }
+
+    .painel-forum p{
+        padding: 0;
+        margin: 0;
+    }
+
+    .painel-forum-top{
+        padding: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid rgb(155, 152, 152);
+    }
+
+    .painel-forum-top p{
+        font-weight: bold;
+    }
+
+    .painel-forum-top span{
+        font-size: 12px;
+    }
+
+    .painel-forum-top span i{
+        font-size: 20px;
+        float: right;
+        margin-right: 10px;
+    }
+
+    .fa-trash{
+        color: rgb(197, 38, 17);
+    }
+
+    .fa-trash:hover{
+        color: rgb(221, 153, 144);
+    }
+
+    .fa-edit{
+        color: rgb(165, 92, 8);
+    }
+
+    .fa-edit:hover{
+        color: rgb(229, 189, 143);
+    }
+
+    .painel-forum-bottom{
+        padding: 20px;
+    }
+
+    .painel-forum-bottom p{
+        font-size: 15px;
+    }
+
+    select{
+        background: #fff !important;
+        width: 80% !important;
+    }
+
+    .btn-cadastrar{
+        margin-top: 30px;
+    }
+
+	@media screen and (max-width: 1000px) {
+
+        .painel-1{
+            font-size: 50px;
+        }
+		
+	}
+
+    </style>
+
+    <div class="alert">
+        <i class="fas fa-folder-open"></i>
+        Área Fórum
+    </div>
+
+    <div class="container">
+	    
+    	<div class="painel-1">
+            
+            <form action="{% url 'forum:edit_final' forum.id %}" method="post">
+			{% csrf_token %}
+           
+                Editar Dados <i class="fas fa-edit"></i>
+
+                <div>
+                    {{ form.curso }}
+                    {{ form.title }}
+                    {{ form.content }}
+                    {{ form.erros }}
+                </div>
+
+                <div class="btn-cadastrar">
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </div>
+
+            </form>
+
+    	</div><!-- fim painel-1 -->
+		
+    </div>
+   
+
+{% endblock %}
