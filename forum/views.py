@@ -2,14 +2,14 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from .models import AnswerForum, Forum
 from django.template.defaultfilters import slugify, title
+from django.core.paginator import Paginator
 
 from forum.forms import FormForum
 
 @login_required(login_url='accounts:login')
-def forum(request):
+def forum_index(request):
 
     all_forum = Forum.objects.all()
-    all_answer = AnswerForum.objects.all()
 
     if request.method == 'POST':
         form = FormForum(request.POST)
@@ -24,10 +24,45 @@ def forum(request):
     else:
         form = FormForum()
 
-    template_name = 'forum.html'
+    template_name = 'forum_index.html'
+
+    count = all_forum.count()
+    paginator = Paginator(all_forum, 5)
+    page = request.GET.get('page')
+    all_forum = paginator.get_page(page)
+
     context = {
         'form': form,
         'forum': all_forum,
+        'count': count
+    }
+    return render(request, template_name, context)
+
+@login_required(login_url='accounts:login')
+def forum(request, slug):
+
+    forum = Forum.objects.filter(slug=slug)
+    id_forum = Forum.objects.filter(slug=slug).values('id')
+    all_answer = AnswerForum.objects.filter(id_topico_forum=id_forum[0]['id'])
+
+    print(all_answer)
+
+    if request.method == 'POST':
+        form = FormForum(request.POST)
+        
+        title = request.POST['title']
+        content = request.POST['content']
+        curso = request.POST['curso']
+        grava_forum = Forum(user=request.user, curso=curso, slug=slug, title=title, content=content)
+        grava_forum.save()
+        form = FormForum()
+    else:
+        form = FormForum()
+
+    template_name = 'forum.html'
+    context = {
+        'form': form,
+        'forum': forum,
         'answer': all_answer
     }
     return render(request, template_name, context)
@@ -66,8 +101,9 @@ def edit_final(request, id):
         curso = request.POST['curso']
         title = request.POST['title']
         content = request.POST['content']
+        slug = slugify(title)
         topico_forum = Forum.objects.filter(id=id)
-        topico_forum.update(curso=curso, title=title, content=content)
+        topico_forum.update(curso=curso, title=title, content=content, slug=slug)
 
 
     return redirect('forum:index')
@@ -75,16 +111,15 @@ def edit_final(request, id):
 @login_required(login_url='accounts:login')
 def comment(request, id):
     
-    all_forum = Forum.objects.all()
-    all_answer = AnswerForum.objects.all()
-
+    forum = Forum.objects.filter(id=id)
+    all_answer = AnswerForum.objects.filter(id_topico_forum=id)
 
     form = FormForum()
 
     context = {
         'form': form,
         'is_comment_id': id,
-        'forum': all_forum,
+        'forum': forum,
         'answer': all_answer
     }
 
@@ -94,8 +129,8 @@ def comment(request, id):
 @login_required(login_url='accounts:login')
 def answer(request, id):
 
-    all_forum = Forum.objects.all()
-    all_answer = AnswerForum.objects.all()
+    forum = Forum.objects.filter(id=id)
+    all_answer = AnswerForum.objects.filter(id_topico_forum=id)
     
     if request.method == 'POST':
         form = FormForum(request.POST)
@@ -112,7 +147,7 @@ def answer(request, id):
     template_name = 'forum.html'
     context = {
         'form': form,
-        'forum': all_forum,
+        'forum': forum,
         'answer': all_answer
     }
     return render(request, template_name, context)

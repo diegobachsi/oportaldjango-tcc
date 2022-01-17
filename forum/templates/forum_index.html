@@ -1,0 +1,158 @@
+
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load my_tags %}
+
+{% block title %}Lista de Tarefas{% endblock %}
+
+{% block content %}
+
+    <style>
+
+    .container{
+		display: grid;
+		grid-template-columns: auto;
+	}
+
+    #itens_forum{
+        background-color:#a9eeb2;
+        text-decoration: none;
+        color: #073f2c;
+        text-align: left;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 5px;
+        width: 100%;
+    }
+
+    .painel-2 a:hover {
+        color: #368d42;
+        background-color: #eee;
+    }
+
+    .painel-2{
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .painel-2 p{
+        font-weight: bold;
+        color: #000;
+        font-size: 25px;
+    }
+
+    .painel-2 span{
+        color: rgb(44, 97, 47);
+        font-size: 15px;
+    }
+
+    .pagination{
+        width: 100%;
+        margin: 20px;
+        display: inline-block;
+        font-size: 20px;
+        color: #aaa;
+    }
+
+    .pagination a{
+        text-align: center;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: inline-block;
+        border: 0;
+        background-color: rgb(248, 248, 248);
+    }
+
+    .pagination a:hover{
+        background-color: #eee;
+    }
+
+    .pagination i{
+        display: inline-block;
+        padding: 5px;
+        font-size: 20px;
+    }
+
+	@media screen and (max-width: 550px) {
+		
+		.container{
+		    display: grid;
+		    grid-template-columns: auto;
+		    margin: 50px 0;
+		}
+
+        .painel-2{
+            width: 100%;
+        }
+
+        .painel-2 p{
+            font-size: 20px;
+        }
+
+        .painel-2 span{
+            font-size: 12px;
+        }
+		
+	}
+
+    </style>
+
+    <div class="alert">
+        <i class="fas fa-folder-open"></i>
+        Área Tópicos
+    </div>
+
+    <div class="container">
+
+    	<div class="painel-2" id="title">
+            {% for item in forum %}
+                {% if forloop.counter <= 5 %}
+                    <a id="itens_forum" href="{{ item.slug }}">
+                            <p>{{ item.title }}</p>
+                            <span><b><i>{{ item.user }}</i></b> | {{ item.curso|nome_curso }} | {{ item.created_at|date:"d M Y - H:i:s" }}</span>
+                    </a>
+                {% endif %}
+            {% endfor %}
+
+            <div class="pagination">
+                {% if forum.has_previous %}
+                    <a href="?page={{ forum.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+                {% endif %}
+                
+                {% if forum.paginator.num_pages %}
+                        <span style="font-size: 20px;">{{ forum.number }} - {{ forum.paginator.num_pages }}</span> 
+                {% endif %}
+            
+                {% if forum.has_next %}
+                    <a href="?page={{ forum.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+                {% endif %}
+            </div>
+            
+            <form action="{% url 'forum:index' %}" method="post">
+			{% csrf_token %}
+           
+                Novo Tópico <i class="fas fa-plus"></i>
+                
+                <div>
+                    {{ form.curso }}
+                    {{ form.title }}
+                    {{ form.content }}
+                    {{ form.erros }}
+                </div>
+               
+
+                <div class="btn-cadastrar">
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </div>
+
+            </form>
+    	</div><!-- fim painel-1 -->
+        
+    </div>
+
+{% endblock %}
+
