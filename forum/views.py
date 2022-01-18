@@ -140,6 +140,11 @@ def answer(request, id):
         grava_answer = AnswerForum(user=request.user, id_topico_forum=id, answer=answer)
         grava_answer.save()
 
+        qtd_answer = forum.values('qtd_answer')[0]['qtd_answer']
+        new_qtd_answer = qtd_answer + 1
+
+        forum.update(qtd_answer=new_qtd_answer)
+
         form = FormForum()
     else:
         form = FormForum()
@@ -170,6 +175,14 @@ def edit_answer(request, id):
 
 @login_required(login_url='accounts:login')
 def delete_answer(request, id):
+
+    id_topico_forum = AnswerForum.objects.filter(id=id).values('id_topico_forum')[0]['id_topico_forum']
+
+    forum = Forum.objects.filter(id=id_topico_forum)
+    qtd_answer = forum.values('qtd_answer')[0]['qtd_answer']
+    new_qtd_answer = qtd_answer - 1
+
+    forum.update(qtd_answer=new_qtd_answer)
 
     forum_answer = get_object_or_404(AnswerForum,id=id) 
     forum_answer.delete()

@@ -18,6 +18,8 @@
 	}
 
     #itens_forum{
+        display: grid;
+		grid-template-columns: 80% 20%;
         background-color:#a9eeb2;
         text-decoration: none;
         color: #073f2c;
@@ -29,7 +31,13 @@
         width: 100%;
     }
 
-    .painel-2 a:hover {
+    #qtd_answer{
+        padding-top: 25px;
+        text-align: right;
+        color: rgb(11, 36, 105);
+    }
+
+    #itens_forum:hover {
         color: #368d42;
         background-color: #eee;
     }
@@ -112,8 +120,16 @@
             {% for item in forum %}
                 {% if forloop.counter <= 5 %}
                     <a id="itens_forum" href="{{ item.slug }}">
-                            <p>{{ item.title }}</p>
-                            <span><b><i>{{ item.user }}</i></b> | {{ item.curso|nome_curso }} | {{ item.created_at|date:"d M Y - H:i:s" }}</span>
+                            <div>
+                                <p>{{ item.title }}</p>
+                                <span><b><i>{{ item.user }}</i></b> |
+                                            {{ item.curso|nome_curso }} |
+                                            {{ item.created_at|date:"d M Y - H:i:s" }}
+                                </span>
+                            </div>
+                            <div id="qtd_answer">
+                                {{ item.qtd_answer }} <i class="fas fa-comments"></i>
+                            </div>
                     </a>
                 {% endif %}
             {% endfor %}

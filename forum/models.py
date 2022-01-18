@@ -20,6 +20,8 @@ class Forum(models.Model):
 
     content = models.TextField('Conteúdo', blank=True)
 
+    qtd_answer = models.IntegerField('Qtd Respostas')
+
     created_at = models.DateTimeField('Criado em:', auto_now_add=True)
 
     objects = ForumManager()
