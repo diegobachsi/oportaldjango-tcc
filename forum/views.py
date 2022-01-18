@@ -18,7 +18,7 @@ def forum_index(request):
         content = request.POST['content']
         curso = request.POST['curso']
         slug = slugify(title)
-        grava_forum = Forum(user=request.user, curso=curso, slug=slug, title=title, content=content)
+        grava_forum = Forum(user=request.user, curso=curso, slug=slug, title=title, content=content, qtd_answer=0)
         grava_forum.save()
         form = FormForum()
     else:
@@ -53,7 +53,7 @@ def forum(request, slug):
         title = request.POST['title']
         content = request.POST['content']
         curso = request.POST['curso']
-        grava_forum = Forum(user=request.user, curso=curso, slug=slug, title=title, content=content)
+        grava_forum = Forum(user=request.user, curso=curso, slug=slug, title=title, content=content, qtd_answer=0)
         grava_forum.save()
         form = FormForum()
     else:
