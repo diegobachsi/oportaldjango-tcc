@@ -56,7 +56,9 @@
 
 	@media screen and (max-width: 992px) {
 
-	
+        .painel-1{
+            width: 100%;
+        }
 		
 	}
 
@@ -71,7 +73,6 @@
     	<div class="painel-1">
 
             {% for item in ranking %}
-               
                 <div id="posicao">{{ forloop.counter }}<hr></div>
                 {% if forloop.first %}
                     <div id="username"><i id="ouro" class="fas fa-medal"></i> {{ item.0 }}<hr></div>
