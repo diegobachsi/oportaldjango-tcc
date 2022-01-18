@@ -8,19 +8,23 @@
 
 {% block content %}
 
-
 <style>
+
+	.alert{
+		display: grid;
+		grid-template-columns: 80% 20%;
+	}
 
     .alert a{
     	border: 1px solid #0e30a1;
+		border-radius: 10px;
     	text-decoration: none;
-    	padding: 5px;
+    	padding: 7px;
     	margin: 10px;
     	color: #0e30a1;
     }
 
     .alert a:hover{
-    	color: #000;
     	background: #eee;
     }
 
@@ -103,6 +107,10 @@
 		font-size: 25px;
 	}
 
+	#ranking{
+		text-align: right;
+	}
+
 	@media screen and (max-width: 992px) {
 
 		.container{
@@ -139,8 +147,13 @@
 </style>
 
 	<div class="alert">
-		<i class="fas fa-gamepad"></i>
-		Você concluiu <b><span style="color: rgb(22, 22, 190)">{{ progresso }}%</span></b> das suas atividades.
+		<div>
+			<i class="fas fa-gamepad"></i>
+			Você concluiu <b><span style="color: rgb(22, 22, 190)">{{ progresso }}%</span></b> das suas atividades.
+		</div>
+		<div id="ranking">
+			<a href="{% url 'website:ranking' %}"><i class="fas fa-medal"></i> Ranking</a>
+		</div>
 	</div>
 
     <div class="container">

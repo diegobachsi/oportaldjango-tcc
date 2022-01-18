@@ -6,6 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import Contact
 
+from django.contrib.auth.models import User
+
 @login_required(login_url='accounts:login')
 def index(request):
     qtd_videos_assistidos = WatchedVideo.objects.filter(user=request.user).count()
@@ -146,3 +148,21 @@ def video_assistido(request, title):
         
 
     return render(request, 'video_assistido.html', context)
+
+@login_required(login_url='accounts:login')
+def ranking(request):
+
+    dict_ranking = {}
+    for u in User.objects.all().values('username'):
+        dict_ranking[u['username']] = WatchedVideo.objects.filter(user=u['username']).count()
+
+    
+    dict_ranking = sorted(dict_ranking.items(), key=lambda x: x[1], reverse=True)
+
+    print(dict_ranking)
+
+    context = {
+        'ranking': dict_ranking
+    }
+
+    return render(request, 'ranking.html', context)
