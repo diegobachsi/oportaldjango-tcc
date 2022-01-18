@@ -1,6 +1,8 @@
 import math
 from django import template
 
+from videos.models import Videos
+
 register = template.Library()
 
 @register.filter
@@ -69,3 +71,10 @@ def nome_curso(num):
 def str_to_int(nome):
 
     return int(nome)
+
+@register.filter
+def calcula_progresso(valor):
+
+    total_videos = Videos.objects.all().count()
+
+    return round(valor/total_videos * 100, 2)
