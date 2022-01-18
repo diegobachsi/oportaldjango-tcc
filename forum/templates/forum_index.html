@@ -60,10 +60,10 @@
 
     .pagination{
         width: 100%;
-        margin: 20px;
+        margin: 20px 0px;
         display: inline-block;
         font-size: 20px;
-        color: #aaa;
+        color: rgb(218, 214, 214);
     }
 
     .pagination a{
@@ -146,6 +146,8 @@
             <div class="pagination">
                 {% if forum.has_previous %}
                     <a href="?page={{ forum.previous_page_number }}"><i class="fas fa-arrow-left"></i></a>
+                {% else %}
+                    <i class="fas fa-arrow-left"></i>
                 {% endif %}
                 
                 {% if forum.paginator.num_pages %}
@@ -154,6 +156,8 @@
             
                 {% if forum.has_next %}
                     <a href="?page={{ forum.next_page_number }}"><i class="fas fa-arrow-right"></i></a>
+                {% else %}
+                    <i class="fas fa-arrow-right"></i>
                 {% endif %}
             </div>
             
