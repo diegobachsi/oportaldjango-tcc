@@ -24,8 +24,10 @@ def index(request):
         if verifica_curso_iniciado:
             qtd_video_por_curso = Videos.objects.filter(curso=i['id']).count()
             qtd_video_assistido_por_curso = WatchedVideo.objects.filter(user=request.user, curso=i['id']).count()
-            progresso_por_curso = (qtd_video_assistido_por_curso / qtd_video_por_curso) * 100
-
+            try:
+                progresso_por_curso = (qtd_video_assistido_por_curso / qtd_video_por_curso) * 100
+            except:
+                progresso_por_curso = 0
             verifica_curso_iniciado.update(progresso=progresso_por_curso)
         else:
             grava_progresso = ProgressoCurso(user=request.user, curso=i['id'], progresso=0)
@@ -156,10 +158,7 @@ def ranking(request):
     for u in User.objects.all().values('username'):
         dict_ranking[u['username']] = WatchedVideo.objects.filter(user=u['username']).count()
 
-    
     dict_ranking = sorted(dict_ranking.items(), key=lambda x: x[1], reverse=True)
-
-    print(dict_ranking)
 
     context = {
         'ranking': dict_ranking
