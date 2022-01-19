@@ -57,7 +57,7 @@
 	@media screen and (max-width: 992px) {
 
         .painel-1{
-            width: 100%;
+            width: 80%;
         }
 		
 	}
@@ -75,13 +75,39 @@
             {% for item in ranking %}
                 <div id="posicao">{{ forloop.counter }}<hr></div>
                 {% if forloop.first %}
-                    <div id="username"><i id="ouro" class="fas fa-medal"></i> {{ item.0 }}<hr></div>
+                    <div id="username"><i id="ouro" class="fas fa-medal"></i> 
+
+                        {% if item.0|length > 15 %}
+                            {{ item.0|truncatechars:15 }}<hr>
+                        {% else %}
+                            {{ item.0 }}<hr>
+                        {% endif %}
+                        
+                    </div>
                 {% elif forloop.counter == 2 %}
-                    <div id="username"><i id="prata" class="fas fa-medal"></i> {{ item.0 }}<hr></div>
+                    <div id="username"><i id="prata" class="fas fa-medal"></i> 
+                        {% if item.0|length > 15 %}
+                            {{ item.0|truncatechars:15 }}<hr>
+                        {% else %}
+                            {{ item.0 }}<hr>
+                        {% endif %}
+                    </div>
                 {% elif forloop.counter == 3 %} 
-                    <div id="username"><i id="bronze" class="fas fa-medal"></i> {{ item.0 }}<hr></div>  
+                    <div id="username"><i id="bronze" class="fas fa-medal"></i>
+                        {% if item.0|length > 15 %}
+                            {{ item.0|truncatechars:15 }}<hr>
+                        {% else %}
+                            {{ item.0 }}<hr>
+                        {% endif %}
+                    </div>  
                 {% else %}    
-                    <div id="username"> {{ item.0 }}<hr></div>
+                    <div id="username"> 
+                        {% if item.0|length > 15 %}
+                            {{ item.0|truncatechars:15 }}<hr>
+                        {% else %}
+                            {{ item.0 }}<hr>
+                        {% endif %}
+                    </div>
                 {% endif %}
                 <div id="progresso">{{ item.1|calcula_progresso }} <i class="fas fa-percentage"></i></i><hr></div>
             {% endfor %}
