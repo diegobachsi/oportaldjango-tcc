@@ -35,6 +35,11 @@
         text-align: justify;
     }
 
+    .alert a:hover{
+        text-decoration: none;
+        color: rgb(109, 197, 231);
+    }
+
 	@media screen and (max-width: 1000px) {
 		
 		.container{
@@ -48,7 +53,7 @@
 
     <div class="alert">
         <i class="fas fa-folder-open"></i>
-        Área Cursos
+        <a href="{% url 'cursos:index' %}">Área Cursos</a>
     </div>
 
     <div class="container">

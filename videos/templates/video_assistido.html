@@ -10,7 +10,7 @@
 
     <style>
 
-#menu_videos, #menu_videos_assistidos{
+    #menu_videos, #menu_videos_assistidos{
         background-color: #ddd;
         display: block;
         text-decoration: none;
@@ -92,6 +92,11 @@
         padding-bottom: 20px;
     }
 
+    .alert a:hover{
+        text-decoration: none;
+        color: rgb(109, 197, 231);
+    }
+
 	@media screen and (max-width: 1000px) {
 		
 		.container{
@@ -110,7 +115,11 @@
 
     <div class="alert">
         <i class="fas fa-folder-open"></i>
-        Área vídeos
+        {% for curso in cursos %}
+          <a href="{% url 'cursos:index' %}">Área Cursos</a> <i class="fas fa-angle-right"></i> 
+          <a href="{% url 'cursos:video_por_cursos' curso.id %}">{{ curso.title }}</a> <i class="fas fa-angle-right"></i> 
+          <a href="#">{{ video.title }}</a>
+        {% endfor %}
     </div>
 
     <div class="container">

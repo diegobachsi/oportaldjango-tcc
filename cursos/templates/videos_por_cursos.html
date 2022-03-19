@@ -110,6 +110,10 @@
         color: rgb(219, 94, 36);
     }
 
+    .alert a:hover{
+        text-decoration: none;
+        color: rgb(109, 197, 231);
+    }
 
 	@media screen and (max-width: 1000px) {
 		
@@ -135,7 +139,8 @@
     <div class="alert">
         <i class="fas fa-folder-open"></i>
         {% for curso in cursos %}
-            Área Cursos > {{ curso.title }}
+            <a href="{% url 'cursos:index' %}">Área Cursos</a> <i class="fas fa-angle-right"></i> 
+            <a href="{% url 'cursos:video_por_cursos' curso.id %}">{{ curso.title }}</a>
         {% endfor %}
     </div>
 
