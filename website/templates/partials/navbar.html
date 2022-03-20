@@ -12,6 +12,17 @@
         background: none;
     }
 
+    .btn-pesquisa{
+        background-color: #fff !important;
+        border: 0px;
+        color: rgb(14, 39, 16);
+    }
+
+    .btn-pesquisa:visited, .btn-pesquisa:active, .btn-pesquisa:focus, .btn-pesquisa:hover{
+        box-shadow: none !important;
+        color: rgb(11, 87, 14);
+    }
+
     @media screen and (max-width: 992px) {
         .btn-dropdown{
             font-size: 12px !important;
@@ -40,11 +51,11 @@
     <div class="user_logado">
         <!-- dropdown -->
         <div class="btn-group">
-            <button type="button" class="btn btn-success btn-dropdown dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <button type="button" class="btn btn-success btn-dropdown dropdown-toggle btn-pesquisa" data-bs-toggle="dropdown" aria-expanded="false">
                 {% if user.get_username|length > 15 %}
-                    Olá, {{ user.get_username|truncatechars:15 }}
+                    Olá, <b>{{ user.get_username|truncatechars:15 }}</b>
                 {% else %}
-                    Olá, {{ user.get_username }}
+                    Olá, <b>{{ user.get_username }}</b>
                 {% endif %}
             </button>
             <ul class="dropdown-menu">
