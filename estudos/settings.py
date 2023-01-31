@@ -29,7 +29,7 @@ SECRET_KEY = '$+r+anux9dvm#^mt0*i#k+d2-tzmf92xilj%1fyqgnji7@w7s_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['oportaldjango.onrender.com']
+ALLOWED_HOSTS = ['54.92.213.104']
 
 # Application definition
 
