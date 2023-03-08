@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/a
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$+r+anux9dvm#^mt0*i#k+d2-tzmf92xilj%1fyqgnji7@w7s_'
+SECRET_KEY = os.environ["SECRET_KEY"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -179,7 +179,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'equipe.gdek@gmail.com'
 #EMAIL_HOST_PASSWORD = 'gmail2020django'
-EMAIL_HOST_PASSWORD = 'tjdeebkhmanprbmz'
+EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
@@ -196,7 +196,8 @@ LOGOUT_REDIRECT_URL = '/'
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '313237803996731'        # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '8a4d9826e87fa390824ab2938de45ea9'  # App Secret
+SOCIAL_AUTH_FACEBOOK_SECRET = os.environ["SOCIAL_AUTH_FACEBOOK_SECRET"]
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '299815273927-4g8dspl106n9cn3kcph3ku6suajtdmti.apps.googleusercontent.com' 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ["SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET"]
+
